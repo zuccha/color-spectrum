@@ -23,8 +23,8 @@ public class InputReader : ScriptableObject, PlayerControls.IGameplayActions
         {
             _playerControls = new PlayerControls();
             _playerControls.Gameplay.SetCallbacks(this);
-            _playerControls.Gameplay.Enable();
         }
+        _playerControls.Gameplay.Enable();
     }
 
     private void OnDisable()
