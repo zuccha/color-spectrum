@@ -87,15 +87,15 @@ public class Player : MonoBehaviour
         _throwDirection = direction;
         if (direction > 0)
         {
-            Vector3 localScale = transform.localScale;
-            localScale.x = 1;
-            transform.localScale = localScale;
+            Quaternion localRotation = transform.localRotation;
+            localRotation.y = 0;
+            transform.localRotation = localRotation;
         }
         else
         {
-            Vector3 localScale = transform.localScale;
-            localScale.x = -1;
-            transform.localScale = localScale;
+            Quaternion localRotation = transform.localRotation;
+            localRotation.y = 180;
+            transform.localRotation = localRotation;
         }
     }
 
