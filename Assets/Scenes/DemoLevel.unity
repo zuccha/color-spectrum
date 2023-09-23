@@ -1361,13 +1361,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: PaintArea
       objectReference: {fileID: 0}
+    - target: {fileID: 5326026180212937983, guid: cffcffcab712d014e94694fc633a8a08, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5326026180212937983, guid: cffcffcab712d014e94694fc633a8a08, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6751168444043620557, guid: cffcffcab712d014e94694fc633a8a08, type: 3}
+      propertyPath: m_Size.x
+      value: 9.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6751168444043620557, guid: cffcffcab712d014e94694fc633a8a08, type: 3}
+      propertyPath: m_Size.y
+      value: 7.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7683815640930859584, guid: cffcffcab712d014e94694fc633a8a08, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.125
+      value: 11.875
       objectReference: {fileID: 0}
     - target: {fileID: 7683815640930859584, guid: cffcffcab712d014e94694fc633a8a08, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3
+      value: -2.75
       objectReference: {fileID: 0}
     - target: {fileID: 7683815640930859584, guid: cffcffcab712d014e94694fc633a8a08, type: 3}
       propertyPath: m_LocalPosition.z
