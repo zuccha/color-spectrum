@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : Actor
@@ -48,6 +49,11 @@ public class Player : Actor
     public void AddBrushPaint(BrushPaint paint)
     {
         _brush.AddPaint(paint, !_isBrushThrown);
+    }
+
+    public override void Kill()
+    {
+        SceneManager.LoadScene("DemoLevel");
     }
 
     private void Reset()

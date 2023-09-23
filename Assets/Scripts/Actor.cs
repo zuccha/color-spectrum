@@ -12,6 +12,11 @@ public class Actor : MonoBehaviour
     private float _damage = 0;
     private Rigidbody2D _rigidbody;
 
+    public virtual void Kill()
+    {
+        gameObject.SetActive(false);
+    }
+
     public void SetMaterial(MaterialType materialType)
     {
         _materialType = materialType;
@@ -28,7 +33,7 @@ public class Actor : MonoBehaviour
         switch (_materialType)
         {
             case MaterialType.Dirt:
-                gameObject.SetActive(false);
+                Kill();
                 break;
             case MaterialType.Lava:
                 _damage += Time.deltaTime;
@@ -44,7 +49,7 @@ public class Actor : MonoBehaviour
                 );
                 break;
         }
-        if (_damage >= MaxLavaDamage) gameObject.SetActive(false);
+        if (_damage >= MaxLavaDamage) Kill();
     }
 
     protected virtual void FixedUpdate()
