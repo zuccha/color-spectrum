@@ -10,6 +10,8 @@ public class PaintOutline : MonoBehaviour
 
     BoxCollider2D _boxCollider;
     SpriteRenderer _spriteRenderer;
+    [SerializeField]
+    private SpriteRenderer _fillColorSpriteRenderer;
 
     HashSet<Actor> _actors = new HashSet<Actor>();
 
@@ -26,21 +28,20 @@ public class PaintOutline : MonoBehaviour
         Material = Empty;
         ApplyMaterial();
 
-        Debug.Log(_spriteRenderer.size);
         BoxCollider2D heatBoxCollider = Heat.GetComponent<BoxCollider2D>();
         SpriteRenderer heatSpriteRenderer = Heat.GetComponent<SpriteRenderer>();
         heatBoxCollider.size = new Vector2(_spriteRenderer.size.x, heatBoxCollider.size.y);
         heatSpriteRenderer.size = heatBoxCollider.size;
-        Debug.Log(heatSpriteRenderer);
         Heat.transform.localPosition = new Vector3(0.0f, _spriteRenderer.size.y / 2 + heatBoxCollider.size.y / 2, Heat.transform.localPosition.z);
-
+        _fillColorSpriteRenderer.size = _spriteRenderer.size;
+        _fillColorSpriteRenderer.enabled = false;
     }
 
     private void ApplyMaterial()
     {
         _boxCollider.isTrigger = !Material.IsSolid;
         gameObject.layer = LayerMask.NameToLayer(Material.IsSolid ? "Ground" : "Default");
-        _spriteRenderer.color = Material.Color;
+        _fillColorSpriteRenderer.color = Material.Color;
         if (Heat != null)
         {
             Heat.SetActive(Material.ProducesHeat);
@@ -69,6 +70,7 @@ public class PaintOutline : MonoBehaviour
             }
             ApplyMaterial();
             brush.Stop();
+            _fillColorSpriteRenderer.enabled = true;
         }
     }
 
@@ -86,6 +88,7 @@ public class PaintOutline : MonoBehaviour
         {
             Material = Empty;
             ApplyMaterial();
+            _fillColorSpriteRenderer.enabled = false;
         }
     }
 }
