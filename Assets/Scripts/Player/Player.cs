@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -12,6 +13,8 @@ public class Player : Actor
     private Rigidbody2D _rigidbody2D;
     [SerializeField]
     private Transform _feetPosition;
+    [SerializeField]
+    private Brush _brush;
     [SerializeField]
     private Rigidbody2D _brushRigidbody2D;
     [SerializeField]
@@ -37,6 +40,11 @@ public class Player : Actor
 
     private bool _isBrushThrown = false;
 
+    public void AddBrushPaint(BrushPaint paint)
+    {
+        _brush.AddPaint(paint, !_isBrushThrown);
+    }
+
     private void Reset()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -48,6 +56,8 @@ public class Player : Actor
         _inputReader.MoveCanceled += OnMoveCanceled;
         _inputReader.JumpPerformed += OnJumpPerformed;
         _inputReader.ThrowBrushPerformed += OnThrowBrushPerformed;
+        _inputReader.SwitchBrushColorLeft += OnSwitchBrushColorLeft;
+        _inputReader.SwitchBrushColorRight += OnSwitchBrushColorRight;
     }
 
     private void OnThrowBrushPerformed()
@@ -70,6 +80,16 @@ public class Player : Actor
             _brushRigidbody2D.transform.localPosition = Vector3.zero;
             _brushBoxCollider2D.enabled = false;
         }
+    }
+
+    private void OnSwitchBrushColorLeft()
+    {
+        if (!_isBrushThrown) _brush.SwitchBrushColorLeft();
+    }
+
+    private void OnSwitchBrushColorRight()
+    {
+        if (!_isBrushThrown) _brush.SwitchBrushColorRight();
     }
 
     private void OnJumpPerformed()
@@ -126,5 +146,7 @@ public class Player : Actor
         _inputReader.MoveCanceled -= OnMoveCanceled;
         _inputReader.JumpPerformed -= OnJumpPerformed;
         _inputReader.ThrowBrushPerformed -= OnThrowBrushPerformed;
+        _inputReader.SwitchBrushColorLeft -= OnSwitchBrushColorLeft;
+        _inputReader.SwitchBrushColorRight -= OnSwitchBrushColorRight;
     }
 }

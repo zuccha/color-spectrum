@@ -53,6 +53,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchBrushColorLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""a9c9652d-5c3d-4523-a701-2ccea963dee0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchBrushColorRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""0b36227a-0e8e-4378-9b40-80424295107a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -198,6 +216,50 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""ThrowBrush"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c9576388-61d2-4e8f-bf5f-eda2b59e6026"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchBrushColorLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9ded23a4-012b-41db-a85b-9f95066ffb2c"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchBrushColorLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45e1c3f6-227a-4dbc-a27e-3655830eb196"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchBrushColorRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""614ee60d-cec2-4a27-b70e-56078935da74"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchBrushColorRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -209,6 +271,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_ThrowBrush = m_Gameplay.FindAction("ThrowBrush", throwIfNotFound: true);
+        m_Gameplay_SwitchBrushColorLeft = m_Gameplay.FindAction("SwitchBrushColorLeft", throwIfNotFound: true);
+        m_Gameplay_SwitchBrushColorRight = m_Gameplay.FindAction("SwitchBrushColorRight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -273,6 +337,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Move;
     private readonly InputAction m_Gameplay_Jump;
     private readonly InputAction m_Gameplay_ThrowBrush;
+    private readonly InputAction m_Gameplay_SwitchBrushColorLeft;
+    private readonly InputAction m_Gameplay_SwitchBrushColorRight;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -280,6 +346,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         public InputAction @ThrowBrush => m_Wrapper.m_Gameplay_ThrowBrush;
+        public InputAction @SwitchBrushColorLeft => m_Wrapper.m_Gameplay_SwitchBrushColorLeft;
+        public InputAction @SwitchBrushColorRight => m_Wrapper.m_Gameplay_SwitchBrushColorRight;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -298,6 +366,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ThrowBrush.started += instance.OnThrowBrush;
             @ThrowBrush.performed += instance.OnThrowBrush;
             @ThrowBrush.canceled += instance.OnThrowBrush;
+            @SwitchBrushColorLeft.started += instance.OnSwitchBrushColorLeft;
+            @SwitchBrushColorLeft.performed += instance.OnSwitchBrushColorLeft;
+            @SwitchBrushColorLeft.canceled += instance.OnSwitchBrushColorLeft;
+            @SwitchBrushColorRight.started += instance.OnSwitchBrushColorRight;
+            @SwitchBrushColorRight.performed += instance.OnSwitchBrushColorRight;
+            @SwitchBrushColorRight.canceled += instance.OnSwitchBrushColorRight;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -311,6 +385,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ThrowBrush.started -= instance.OnThrowBrush;
             @ThrowBrush.performed -= instance.OnThrowBrush;
             @ThrowBrush.canceled -= instance.OnThrowBrush;
+            @SwitchBrushColorLeft.started -= instance.OnSwitchBrushColorLeft;
+            @SwitchBrushColorLeft.performed -= instance.OnSwitchBrushColorLeft;
+            @SwitchBrushColorLeft.canceled -= instance.OnSwitchBrushColorLeft;
+            @SwitchBrushColorRight.started -= instance.OnSwitchBrushColorRight;
+            @SwitchBrushColorRight.performed -= instance.OnSwitchBrushColorRight;
+            @SwitchBrushColorRight.canceled -= instance.OnSwitchBrushColorRight;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -333,5 +413,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnThrowBrush(InputAction.CallbackContext context);
+        void OnSwitchBrushColorLeft(InputAction.CallbackContext context);
+        void OnSwitchBrushColorRight(InputAction.CallbackContext context);
     }
 }

@@ -14,6 +14,9 @@ public class InputReader : ScriptableObject, PlayerControls.IGameplayActions
 
     public event Action ThrowBrushPerformed;
 
+    public event Action SwitchBrushColorLeft;
+    public event Action SwitchBrushColorRight;
+
     private void OnEnable()
     {
         if (_playerControls == null)
@@ -58,6 +61,26 @@ public class InputReader : ScriptableObject, PlayerControls.IGameplayActions
         {
             case InputActionPhase.Performed:
                 ThrowBrushPerformed?.Invoke();
+                break;
+        }
+    }
+
+    public void OnSwitchBrushColorLeft(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Performed:
+                SwitchBrushColorLeft?.Invoke();
+                break;
+        }
+    }
+
+    public void OnSwitchBrushColorRight(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Performed:
+                SwitchBrushColorRight?.Invoke();
                 break;
         }
     }
