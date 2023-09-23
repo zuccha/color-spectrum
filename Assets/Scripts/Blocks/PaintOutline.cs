@@ -29,6 +29,7 @@ public class PaintOutline : MonoBehaviour
     private void ApplyMaterial()
     {
         _boxCollider.isTrigger = !Material.IsSolid;
+        gameObject.layer = LayerMask.NameToLayer(Material.IsSolid ? "Ground" : "Default");
         _spriteRenderer.color = Material.Color;
         Heat.SetActive(Material.ProducesHeat);
         foreach (var actor in _actors)
