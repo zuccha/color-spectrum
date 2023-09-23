@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Actor : MonoBehaviour
 {
-    public float MaxLavaDamage = 2f;
-
     protected Vector2 _maxVelocity;
     protected MaterialType _materialType = MaterialType.None;
 
-    private float _damage = 0;
     private Rigidbody2D _rigidbody;
+
+    [Header("UI-Elements")]
+    [SerializeField]
+    private Healthbar _healthbar;
+
+    protected float _maxHealth = 100f;
+    protected float _currentHealth;
 
     public virtual void Kill()
     {
@@ -20,12 +24,14 @@ public class Actor : MonoBehaviour
     public void SetMaterial(MaterialType materialType)
     {
         _materialType = materialType;
-        _damage = 0;
     }
 
     protected virtual void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _currentHealth = _maxHealth;
+
+        _healthbar.UpdateHealthBar(_maxHealth, _currentHealth);
     }
 
     protected virtual void Update()
@@ -36,7 +42,8 @@ public class Actor : MonoBehaviour
                 Kill();
                 break;
             case MaterialType.Lava:
-                _damage += Time.deltaTime;
+                _currentHealth -= 1f;
+                _healthbar.UpdateHealthBar(_maxHealth, _currentHealth);
                 _rigidbody.velocity = new Vector2(
                     _rigidbody.velocity.x,
                     Mathf.Max(_rigidbody.velocity.y, -0.5f)
@@ -49,7 +56,7 @@ public class Actor : MonoBehaviour
                 );
                 break;
         }
-        if (_damage >= MaxLavaDamage) Kill();
+        if (_currentHealth <= 0f) Kill();
     }
 
     protected virtual void FixedUpdate()
