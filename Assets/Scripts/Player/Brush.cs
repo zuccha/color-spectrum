@@ -162,4 +162,15 @@ public class Brush : MonoBehaviour
             _brushTipSpriteRenderer.color = ColorByPaint(Paint);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Actor actor = other.GetComponent<Actor>();
+        if (actor) return;
+
+        PaintOutline paintOutline = other.GetComponent<PaintOutline>();
+        if (paintOutline) return;
+
+        Free();
+    }
 }
