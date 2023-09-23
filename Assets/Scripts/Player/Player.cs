@@ -40,6 +40,11 @@ public class Player : Actor
 
     private bool _isBrushThrown = false;
 
+    public void AddBrushPaint(BrushPaint paint)
+    {
+        _brush.AddPaint(paint, !_isBrushThrown);
+    }
+
     private void Reset()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();

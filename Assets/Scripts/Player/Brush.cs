@@ -6,6 +6,7 @@ public enum BrushPaint
 {
     Blue,
     Brown,
+    Green,
     Red,
 }
 
@@ -31,11 +32,23 @@ public class Brush : MonoBehaviour
         BrushPaint.Red,
     };
 
+    public static Color ColorByPaint(BrushPaint paint)
+    {
+        switch (paint)
+        {
+            case BrushPaint.Blue: return Color.blue;
+            case BrushPaint.Brown: return Color.yellow;
+            case BrushPaint.Green: return Color.green;
+            case BrushPaint.Red: return Color.red;
+        }
+        return Color.yellow;
+    }
+
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        ApplyColor();
+        _spriteRenderer.color = ColorByPaint(Paint);
     }
 
     public void Stop()
@@ -45,24 +58,25 @@ public class Brush : MonoBehaviour
 
     public void SwitchBrushColorLeft()
     {
-        _selectedBrushColorIndex = (_selectedBrushColorIndex + 1) % _availableBrushColors.Count;
-        ApplyColor();
+        --_selectedBrushColorIndex;
+        if (_selectedBrushColorIndex < 0) _selectedBrushColorIndex = _availableBrushColors.Count - 1;
+        _spriteRenderer.color = ColorByPaint(Paint);
     }
 
     public void SwitchBrushColorRight()
     {
-        --_selectedBrushColorIndex;
-        if (_selectedBrushColorIndex < 0) _selectedBrushColorIndex = _availableBrushColors.Count - 1;
-        ApplyColor();
+        _selectedBrushColorIndex = (_selectedBrushColorIndex + 1) % _availableBrushColors.Count;
+        _spriteRenderer.color = ColorByPaint(Paint);
     }
 
-    private void ApplyColor()
+    public void AddPaint(BrushPaint paint, bool autoSelect)
     {
-        switch (Paint)
+        if (_availableBrushColors.Contains(paint)) return;
+        _availableBrushColors.Add(paint);
+        if (autoSelect)
         {
-            case BrushPaint.Blue: _spriteRenderer.color = Color.blue; break;
-            case BrushPaint.Brown: _spriteRenderer.color = Color.yellow; break;
-            case BrushPaint.Red: _spriteRenderer.color = Color.red; break;
+            _selectedBrushColorIndex = _availableBrushColors.Count - 1;
+            _spriteRenderer.color = ColorByPaint(Paint);
         }
     }
 }
