@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class HotAirBalloon : Heatable
 {
-  float _initialPositionY;
-  Rigidbody2D _rigidbody;
+    private Rigidbody2D _rigidbody;
+    private float _initialPositionY;
 
-  private void Start()
-  {
-    _initialPositionY = transform.position.y;
-    _rigidbody = GetComponent<Rigidbody2D>();
-  }
+    private void Start()
+    {
+        _initialPositionY = transform.position.y;
+        _rigidbody = GetComponent<Rigidbody2D>();
+    }
 
-  private void Update()
-  {
-    _rigidbody.velocity = IsHeating ? Vector2.up : Vector2.down;
-    transform.position = new Vector3(
-      transform.position.x,
-      Mathf.Max(transform.position.y, _initialPositionY),
-      transform.position.z);
-  }
+    protected override void Update()
+    {
+        base.Update();
+
+        _rigidbody.velocity = _isHeating ? Vector2.up * 0.5f : Vector2.down * 0.5f;
+        transform.position = new Vector3(
+          transform.position.x,
+          Mathf.Max(transform.position.y, _initialPositionY),
+          transform.position.z);
+    }
 }

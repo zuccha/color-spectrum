@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Heat : MonoBehaviour
 {
-  private void OnTriggerEnter2D(Collider2D other)
-  {
-    Heatable heatable = other.GetComponent<Heatable>();
-    if (heatable) heatable.IsHeating = true;
-  }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Heatable heatable = other.GetComponent<Heatable>();
+        if (heatable) heatable.SetIsHeating(true);
+    }
 
-  private void OnTriggerExit2D(Collider2D other)
-  {
-    Heatable heatable = other.GetComponent<Heatable>();
-    if (heatable) heatable.IsHeating = false;
-  }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        Heatable heatable = other.GetComponent<Heatable>();
+        if (heatable) heatable.SetIsHeating(false);
+    }
 }
