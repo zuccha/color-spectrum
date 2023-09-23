@@ -12,6 +12,8 @@ public enum BrushPaint
 
 public class Brush : MonoBehaviour
 {
+    public bool IsStuck = false;
+
     public BrushPaint Paint
     {
         get
@@ -48,7 +50,6 @@ public class Brush : MonoBehaviour
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        //_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _brushTipspriteRenderer.color = ColorByPaint(Paint);
     }
 
@@ -57,9 +58,16 @@ public class Brush : MonoBehaviour
         IsMoving = _rigidbody.velocity != Vector2.zero;
     }
 
-    public void Stop()
+    public void Stuck()
     {
         _rigidbody.velocity = Vector2.zero;
+        IsStuck = true;
+    }
+
+    public void Free()
+    {
+        _rigidbody.velocity = Vector2.zero;
+        IsStuck = false;
     }
 
     public void SwitchBrushColorLeft()

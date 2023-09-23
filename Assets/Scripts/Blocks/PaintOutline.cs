@@ -69,7 +69,7 @@ public class PaintOutline : MonoBehaviour
                 case BrushPaint.Red: Material = Lava; break;
             }
             ApplyMaterial();
-            brush.Stop();
+            brush.Stuck();
         }
     }
 
@@ -87,6 +87,7 @@ public class PaintOutline : MonoBehaviour
         {
             Material = Empty;
             ApplyMaterial();
+            brush.Free();
         }
     }
 }

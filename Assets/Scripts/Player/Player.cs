@@ -73,6 +73,7 @@ public class Player : Actor
 
     private void OnThrowBrushPerformed()
     {
+        _brush.Free();
         if (!_isBrushThrown)
         {
             _isBrushThrown = true;
@@ -152,6 +153,17 @@ public class Player : Actor
         if ((_brushRigidbody2D.transform.position - transform.position).magnitude > _maxBrushDistance)
         {
             _brushRigidbody2D.velocity = Vector2.zero;
+
+            if (!_brush.IsStuck)
+            {
+                _isBrushThrown = false;
+                _brushRigidbody2D.isKinematic = true;
+                _brushRigidbody2D.velocity = Vector3.zero;
+                _brushRigidbody2D.transform.SetParent(_brushAnchor);
+                _brushRigidbody2D.transform.localPosition = Vector3.zero;
+                _brush.transform.rotation = transform.rotation;
+                _brushBoxCollider2D.enabled = false;
+            }
         }
 
         base.Update();
