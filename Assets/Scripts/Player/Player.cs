@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     private Transform _feetPosition;
     [SerializeField]
     private Rigidbody2D _brushRigidbody2D;
+    [SerializeField]
+    private Transform _brushAnchor;
 
     [Header("Customization")]
     [SerializeField]
@@ -63,7 +65,7 @@ public class Player : MonoBehaviour
             Debug.Log("Calling");
             _brushRigidbody2D.isKinematic = true;
             _brushRigidbody2D.velocity = Vector3.zero;
-            _brushRigidbody2D.transform.SetParent(gameObject.transform);
+            _brushRigidbody2D.transform.SetParent(_brushAnchor);
             _brushRigidbody2D.transform.localPosition = Vector3.zero;
         }
     }
