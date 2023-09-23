@@ -49,6 +49,8 @@ public class Brush : MonoBehaviour
     [SerializeField]
     private List<BrushPaint> _availableBrushColors = new List<BrushPaint> { BrushPaint.Brown };
 
+    private PaintOutline _lastTouchedPaintOutline;
+
     public bool IsMoving { get; private set; } = false;
 
     public static Color ColorByPaint(BrushPaint paint)
@@ -107,18 +109,18 @@ public class Brush : MonoBehaviour
         _boxCollider2D.enabled = true;
     }
 
-    public void Stuck()
+    public void Stuck(PaintOutline paintOutline)
     {
-        if (State != BrushState.Thrown) return;
+        if (paintOutline == _lastTouchedPaintOutline) return;
 
         State = BrushState.Stuck;
         _rigidbody2D.velocity = Vector2.zero;
+        _lastTouchedPaintOutline = paintOutline;
     }
 
     public void Free()
     {
         if (State != BrushState.Thrown && State != BrushState.Stuck) return;
-        _boxCollider2D.enabled = false;
         _rigidbody2D.velocity = Vector2.zero;
 
         State = BrushState.Returning;
@@ -133,6 +135,7 @@ public class Brush : MonoBehaviour
         _rigidbody2D.transform.localPosition = Vector3.zero;
         transform.rotation = _player.transform.rotation;
         _boxCollider2D.enabled = false;
+        _lastTouchedPaintOutline = null;
     }
 
     public void SwitchBrushColorLeft()

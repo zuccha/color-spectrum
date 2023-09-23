@@ -70,7 +70,7 @@ public class PaintOutline : MonoBehaviour
                 case BrushPaint.Red: Material = Lava; break;
             }
             ApplyMaterial();
-            brush.Stuck();
+            brush.Stuck(this);
             _fillColorSpriteRenderer.enabled = true;
         }
     }
