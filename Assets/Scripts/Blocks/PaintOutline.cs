@@ -47,11 +47,11 @@ public class PaintOutline : MonoBehaviour
         Brush brush = other.GetComponent<Brush>();
         if (brush)
         {
-            switch (brush.Color)
+            switch (brush.Paint)
             {
-                case BrushColor.Blue: Material = Water; break;
-                case BrushColor.Brown: Material = Dirt; break;
-                case BrushColor.Red: Material = Lava; break;
+                case BrushPaint.Blue: Material = Water; break;
+                case BrushPaint.Brown: Material = Dirt; break;
+                case BrushPaint.Red: Material = Lava; break;
             }
             ApplyMaterial();
             brush.Stop();
