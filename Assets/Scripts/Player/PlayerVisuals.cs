@@ -12,6 +12,8 @@ public class PlayerVisuals : MonoBehaviour
 
     [SerializeField]
     private Player _player;
+    [SerializeField]
+    private ParticleSystem _dustParticles;
 
     private readonly int IsRunning = Animator.StringToHash("IsRunning");
     private readonly int IsInAir = Animator.StringToHash("IsInAir");
@@ -25,6 +27,18 @@ public class PlayerVisuals : MonoBehaviour
     {
         _player.PlayerMoves += OnPlayerMoves;
         _player.PlayerIdles += OnPlayerIdles;
+        _player.PlayerChangedDirection += OnPlayerChangedDirection;
+        _player.PlayerJumps += OnPlayerJumps;
+    }
+
+    private void OnPlayerJumps()
+    {
+        _dustParticles.Play();
+    }
+
+    private void OnPlayerChangedDirection()
+    {
+        _dustParticles.Play();
     }
 
     private void OnPlayerIdles()
@@ -35,6 +49,11 @@ public class PlayerVisuals : MonoBehaviour
     private void OnPlayerMoves()
     {
         _animator.SetBool(IsRunning, true);
+    }
+
+    public void EmitDustParticles()
+    {
+        _dustParticles.Play();
     }
 
     private void Update()
