@@ -123,16 +123,18 @@ public class Player : Actor
 
     private void OnMovePerformed(float direction)
     {
-        _moveDirection = direction;
-        _throwDirection = direction;
         if (direction > 0)
         {
+            _moveDirection = 1;
+            _throwDirection = 1;
             Quaternion localRotation = transform.localRotation;
             localRotation.y = 0;
             transform.localRotation = localRotation;
         }
         else
         {
+            _moveDirection = -1;
+            _throwDirection = -1;
             Quaternion localRotation = transform.localRotation;
             localRotation.y = 180;
             transform.localRotation = localRotation;
