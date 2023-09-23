@@ -33,6 +33,8 @@ public class Brush : MonoBehaviour
         BrushPaint.Red,
     };
 
+    public bool IsMoving { get; private set; } = false;
+
     public static Color ColorByPaint(BrushPaint paint)
     {
         switch (paint)
@@ -50,6 +52,11 @@ public class Brush : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         //_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _brushTipspriteRenderer.color = ColorByPaint(Paint);
+    }
+
+    private void Update()
+    {
+        IsMoving = _rigidbody.velocity != Vector2.zero;
     }
 
     public void Stop()

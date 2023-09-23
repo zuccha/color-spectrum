@@ -89,6 +89,7 @@ public class Player : Actor
             _brushRigidbody2D.velocity = Vector3.zero;
             _brushRigidbody2D.transform.SetParent(_brushAnchor);
             _brushRigidbody2D.transform.localPosition = Vector3.zero;
+            _brush.transform.rotation = transform.rotation;
             _brushBoxCollider2D.enabled = false;
         }
     }
