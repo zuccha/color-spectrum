@@ -22,12 +22,6 @@ public class Player : Actor
     private Transform _feetPosition;
     [SerializeField]
     private Brush _brush;
-    [SerializeField]
-    private Rigidbody2D _brushRigidbody2D;
-    [SerializeField]
-    private BoxCollider2D _brushBoxCollider2D;
-    [SerializeField]
-    private Transform _brushAnchor;
 
     [Header("Customization")]
     [SerializeField]
@@ -38,18 +32,14 @@ public class Player : Actor
     private float _jumpForce = 10f;
     [SerializeField]
     private float _throwStrength = 10f;
-    [SerializeField]
-    private float _maxBrushDistance = 4f;
 
     private float _moveDirection = 0f;
     private float _throwDirection = 1f;
     public bool IsGrounded { get; private set; } = false;
 
-    private bool _isBrushThrown = false;
-
     public void AddBrushPaint(BrushPaint paint)
     {
-        _brush.AddPaint(paint, !_isBrushThrown);
+        _brush.AddPaint(paint, _brush.State == BrushState.Held);
     }
 
     public override void Kill()
@@ -74,36 +64,20 @@ public class Player : Actor
 
     private void OnThrowBrushPerformed()
     {
-        _brush.Free();
-        if (!_isBrushThrown)
-        {
-            _isBrushThrown = true;
-            _brushRigidbody2D.isKinematic = false;
-            _brushRigidbody2D.gravityScale = 0f;
-            _brushRigidbody2D.transform.SetParent(null);
-            _brushRigidbody2D.AddForce(new Vector2(_throwDirection, 0f) * _throwStrength, ForceMode2D.Impulse);
-            _brushBoxCollider2D.enabled = true;
-        }
+        if (_brush.State == BrushState.Held)
+            _brush.Throw(_throwDirection, _throwStrength);
         else
-        {
-            _isBrushThrown = false;
-            _brushRigidbody2D.isKinematic = true;
-            _brushRigidbody2D.velocity = Vector3.zero;
-            _brushRigidbody2D.transform.SetParent(_brushAnchor);
-            _brushRigidbody2D.transform.localPosition = Vector3.zero;
-            _brush.transform.rotation = transform.rotation;
-            _brushBoxCollider2D.enabled = false;
-        }
+            _brush.Free();
     }
 
     private void OnSwitchBrushColorLeft()
     {
-        if (!_isBrushThrown) _brush.SwitchBrushColorLeft();
+        _brush.SwitchBrushColorLeft();
     }
 
     private void OnSwitchBrushColorRight()
     {
-        if (!_isBrushThrown) _brush.SwitchBrushColorRight();
+        _brush.SwitchBrushColorRight();
     }
 
     private void OnJumpPerformed()
@@ -158,23 +132,6 @@ public class Player : Actor
     {
         float radius = 0.1f;
         IsGrounded = Physics2D.OverlapCircle(_feetPosition.position, radius, _groundLayerMask);
-
-        if ((_brushRigidbody2D.transform.position - transform.position).magnitude > _maxBrushDistance)
-        {
-            _brushRigidbody2D.velocity = Vector2.zero;
-
-            if (!_brush.IsStuck)
-            {
-                _isBrushThrown = false;
-                _brushRigidbody2D.isKinematic = true;
-                _brushRigidbody2D.velocity = Vector3.zero;
-                _brushRigidbody2D.transform.SetParent(_brushAnchor);
-                _brushRigidbody2D.transform.localPosition = Vector3.zero;
-                _brush.transform.rotation = transform.rotation;
-                _brushBoxCollider2D.enabled = false;
-            }
-        }
-
         base.Update();
     }
 

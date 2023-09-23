@@ -33,7 +33,6 @@ public class PaintOutline : MonoBehaviour
         SpriteRenderer heatSpriteRenderer = Heat.GetComponent<SpriteRenderer>();
         heatBoxCollider.size = new Vector2(_spriteRenderer.size.x, HeatHeight);
         heatSpriteRenderer.size = heatBoxCollider.size;
-        Debug.Log(heatSpriteRenderer);
         Heat.transform.localPosition = new Vector3(0.0f, _spriteRenderer.size.y / 2 + HeatHeight / 2, Heat.transform.localPosition.z);
         _fillColorSpriteRenderer.size = _spriteRenderer.size;
         _fillColorSpriteRenderer.enabled = false;
@@ -71,7 +70,7 @@ public class PaintOutline : MonoBehaviour
                 case BrushPaint.Red: Material = Lava; break;
             }
             ApplyMaterial();
-            brush.Stuck();
+            brush.Stuck(this);
             _fillColorSpriteRenderer.enabled = true;
         }
     }

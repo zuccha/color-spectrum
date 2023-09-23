@@ -13,6 +13,9 @@ public class Actor : MonoBehaviour
     [SerializeField]
     private Healthbar _healthbar;
 
+    [SerializeField]
+    private float _lavaVulnerability = 100f;
+
     protected float _maxHealth = 100f;
     protected float _currentHealth;
 
@@ -42,7 +45,7 @@ public class Actor : MonoBehaviour
                 Kill();
                 break;
             case MaterialType.Lava:
-                _currentHealth -= 1f;
+                _currentHealth -= _lavaVulnerability * Time.deltaTime;
                 _healthbar.UpdateHealthBar(_maxHealth, _currentHealth);
                 _rigidbody.velocity = new Vector2(
                     _rigidbody.velocity.x,
