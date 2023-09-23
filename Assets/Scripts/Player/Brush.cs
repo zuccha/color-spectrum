@@ -44,6 +44,11 @@ public class Brush : MonoBehaviour
     [SerializeField]
     private SpriteRenderer _brushTipSpriteRenderer;
 
+    [SerializeField]
+    private float _cameraShakeIntensity = 0.5f;
+    [SerializeField]
+    private float _cameraShakeDuration = 0.25f;
+
     private int _selectedBrushColorIndex = 0;
 
     [SerializeField]
@@ -116,13 +121,18 @@ public class Brush : MonoBehaviour
         State = BrushState.Stuck;
         _rigidbody2D.velocity = Vector2.zero;
         _lastTouchedPaintOutline = paintOutline;
-        CameraShake.Instance.ShakeCamera(0.5f, 0.25f);
+        CameraShake.Instance.ShakeCamera(_cameraShakeIntensity, _cameraShakeDuration);
     }
 
     public void Free()
     {
         if (State != BrushState.Thrown && State != BrushState.Stuck) return;
         _rigidbody2D.velocity = Vector2.zero;
+
+        if (State == BrushState.Stuck)
+        {
+            CameraShake.Instance.ShakeCamera(_cameraShakeIntensity, _cameraShakeDuration);
+        }
 
         State = BrushState.Returning;
     }
