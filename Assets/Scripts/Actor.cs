@@ -7,8 +7,8 @@ public class Actor : MonoBehaviour
     public float MaxLavaDamage = 2f;
 
     protected Vector2 _maxVelocity;
+    protected MaterialType _materialType = MaterialType.None;
 
-    private MaterialType _materialType = MaterialType.None;
     private float _damage = 0;
     private Rigidbody2D _rigidbody;
 

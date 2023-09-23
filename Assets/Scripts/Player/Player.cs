@@ -94,8 +94,13 @@ public class Player : Actor
 
     private void OnJumpPerformed()
     {
-        if (!_isGrounded) return;
-        _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _jumpForce);
+        if (_isGrounded)
+            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _jumpForce);
+        else if (_materialType == MaterialType.Lava)
+            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _jumpForce / 4);
+        else if (_materialType == MaterialType.Water)
+            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _jumpForce / 2);
+
     }
 
     private void OnMoveCanceled()
