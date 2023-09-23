@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4934855861908967133}
   - component: {fileID: 6289122242049640199}
   m_Layer: 0
-  m_Name: GreenPaint
+  m_Name: Paint - Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.10661459, a: 1}
+  m_Color: {r: 0, g: 0.0153307915, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -143,4 +143,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f692949a07fa438f92c7508b25b48cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Paint: 2
+  Paint: 0

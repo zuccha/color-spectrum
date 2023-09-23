@@ -27,11 +27,9 @@ public class Brush : MonoBehaviour
     private SpriteRenderer _brushTipspriteRenderer;
 
     private int _selectedBrushColorIndex = 0;
-    private List<BrushPaint> _availableBrushColors = new List<BrushPaint> {
-        BrushPaint.Blue,
-        BrushPaint.Brown,
-        BrushPaint.Red,
-    };
+
+    [SerializeField]
+    private List<BrushPaint> _availableBrushColors = new List<BrushPaint> { BrushPaint.Brown };
 
     public bool IsMoving { get; private set; } = false;
 

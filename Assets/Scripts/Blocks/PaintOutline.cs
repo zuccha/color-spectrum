@@ -7,6 +7,7 @@ public class PaintOutline : MonoBehaviour
 {
     public Material Material;
     public GameObject Heat;
+    public float HeatHeight = 6;
 
     BoxCollider2D _boxCollider;
     SpriteRenderer _spriteRenderer;
@@ -29,10 +30,10 @@ public class PaintOutline : MonoBehaviour
         Debug.Log(_spriteRenderer.size);
         BoxCollider2D heatBoxCollider = Heat.GetComponent<BoxCollider2D>();
         SpriteRenderer heatSpriteRenderer = Heat.GetComponent<SpriteRenderer>();
-        heatBoxCollider.size = new Vector2(_spriteRenderer.size.x, heatBoxCollider.size.y);
+        heatBoxCollider.size = new Vector2(_spriteRenderer.size.x, HeatHeight);
         heatSpriteRenderer.size = heatBoxCollider.size;
         Debug.Log(heatSpriteRenderer);
-        Heat.transform.localPosition = new Vector3(0.0f, _spriteRenderer.size.y / 2 + heatBoxCollider.size.y / 2, Heat.transform.localPosition.z);
+        Heat.transform.localPosition = new Vector3(0.0f, _spriteRenderer.size.y / 2 + HeatHeight / 2, Heat.transform.localPosition.z);
 
     }
 
