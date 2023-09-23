@@ -12,6 +12,8 @@ public class InputReader : ScriptableObject, PlayerControls.IGameplayActions
 
     public event Action JumpPerformed;
 
+    public event Action ThrowBrushPerformed;
+
     private void OnEnable()
     {
         if (_playerControls == null)
@@ -46,6 +48,16 @@ public class InputReader : ScriptableObject, PlayerControls.IGameplayActions
         {
             case InputActionPhase.Performed:
                 JumpPerformed?.Invoke();
+                break;
+        }
+    }
+
+    public void OnThrowBrush(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Performed:
+                ThrowBrushPerformed?.Invoke();
                 break;
         }
     }
