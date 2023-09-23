@@ -15,6 +15,8 @@ public class Player : Actor
     [SerializeField]
     private Rigidbody2D _brushRigidbody2D;
     [SerializeField]
+    private BoxCollider2D _brushBoxCollider2D;
+    [SerializeField]
     private Transform _brushAnchor;
 
     [Header("Customization")]
@@ -57,6 +59,7 @@ public class Player : Actor
             _brushRigidbody2D.gravityScale = 0f;
             _brushRigidbody2D.transform.SetParent(null);
             _brushRigidbody2D.AddForce(new Vector2(_throwDirection, 0f) * _throwStrength, ForceMode2D.Impulse);
+            _brushBoxCollider2D.enabled = true;
         }
         else
         {
@@ -65,6 +68,7 @@ public class Player : Actor
             _brushRigidbody2D.velocity = Vector3.zero;
             _brushRigidbody2D.transform.SetParent(_brushAnchor);
             _brushRigidbody2D.transform.localPosition = Vector3.zero;
+            _brushBoxCollider2D.enabled = false;
         }
     }
 

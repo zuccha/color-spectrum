@@ -26,14 +26,6 @@ public class PaintOutline : MonoBehaviour
         ApplyMaterial();
     }
 
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.W)) { Material = Water; ApplyMaterial(); }
-        if (Input.GetKey(KeyCode.G)) { Material = Dirt; ApplyMaterial(); }
-        if (Input.GetKey(KeyCode.L)) { Material = Lava; ApplyMaterial(); }
-        if (Input.GetKey(KeyCode.Backspace)) { Material = Empty; ApplyMaterial(); }
-    }
-
     private void ApplyMaterial()
     {
         _boxCollider.isTrigger = !Material.IsSolid;
@@ -51,6 +43,19 @@ public class PaintOutline : MonoBehaviour
             _actors.Add(actor);
             actor.SetMaterial(Material.Type);
         }
+
+        Brush brush = other.GetComponent<Brush>();
+        if (brush)
+        {
+            switch (brush.Color)
+            {
+                case BrushColor.Blue: Material = Water; break;
+                case BrushColor.Brown: Material = Dirt; break;
+                case BrushColor.Red: Material = Lava; break;
+            }
+            ApplyMaterial();
+            brush.Stop();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -60,6 +65,13 @@ public class PaintOutline : MonoBehaviour
         {
             _actors.Remove(actor);
             actor.SetMaterial(MaterialType.None);
+        }
+
+        Brush brush = other.GetComponent<Brush>();
+        if (brush)
+        {
+            Material = Empty;
+            ApplyMaterial();
         }
     }
 }
