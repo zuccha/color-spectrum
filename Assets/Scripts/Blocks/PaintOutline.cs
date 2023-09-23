@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PaintOutline : MonoBehaviour
 {
@@ -13,9 +14,9 @@ public class PaintOutline : MonoBehaviour
     HashSet<Actor> _actors = new HashSet<Actor>();
 
     private static Material Dirt = new Material(MaterialType.Dirt, new Color(1, 1, 0), true, false);
-    private static Material Empty = new Material(MaterialType.None, new Color(1, 1, 1, 0.2f), false, false);
-    private static Material Lava = new Material(MaterialType.Lava, new Color(1, 0, 0, 0.5f), false, true);
-    private static Material Water = new Material(MaterialType.Water, new Color(0, 0, 1, 0.3f), false, false);
+    private static Material Empty = new Material(MaterialType.None, new Color(1, 1, 1), false, false);
+    private static Material Lava = new Material(MaterialType.Lava, new Color(1, 0, 0), false, true);
+    private static Material Water = new Material(MaterialType.Water, new Color(0, 0, 1), false, false);
 
     void Start()
     {
@@ -24,6 +25,15 @@ public class PaintOutline : MonoBehaviour
 
         Material = Empty;
         ApplyMaterial();
+
+        Debug.Log(_spriteRenderer.size);
+        BoxCollider2D heatBoxCollider = Heat.GetComponent<BoxCollider2D>();
+        SpriteRenderer heatSpriteRenderer = Heat.GetComponent<SpriteRenderer>();
+        heatBoxCollider.size = new Vector2(_spriteRenderer.size.x, heatBoxCollider.size.y);
+        heatSpriteRenderer.size = heatBoxCollider.size;
+        Debug.Log(heatSpriteRenderer);
+        Heat.transform.localPosition = new Vector3(0.0f, _spriteRenderer.size.y / 2 + heatBoxCollider.size.y / 2, Heat.transform.localPosition.z);
+
     }
 
     private void ApplyMaterial()
@@ -31,7 +41,10 @@ public class PaintOutline : MonoBehaviour
         _boxCollider.isTrigger = !Material.IsSolid;
         gameObject.layer = LayerMask.NameToLayer(Material.IsSolid ? "Ground" : "Default");
         _spriteRenderer.color = Material.Color;
-        Heat.SetActive(Material.ProducesHeat);
+        if (Heat != null)
+        {
+            Heat.SetActive(Material.ProducesHeat);
+        }
         foreach (var actor in _actors)
             actor.SetMaterial(Material.Type);
     }
