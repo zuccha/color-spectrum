@@ -14,7 +14,7 @@ public class PlayerVisuals : MonoBehaviour
     private Player _player;
 
     private readonly int IsRunning = Animator.StringToHash("IsRunning");
-    private readonly int IsJumping = Animator.StringToHash("IsJumping");
+    private readonly int IsInAir = Animator.StringToHash("IsInAir");
 
     private void Reset()
     {
@@ -25,18 +25,6 @@ public class PlayerVisuals : MonoBehaviour
     {
         _player.PlayerMoves += OnPlayerMoves;
         _player.PlayerIdles += OnPlayerIdles;
-        _player.PlayerJumps += OnPlayerJumps;
-        _player.PlayerLands += OnPlayerLands;
-    }
-
-    private void OnPlayerLands()
-    {
-        Debug.Log("test");
-    }
-
-    private void OnPlayerJumps()
-    {
-        _animator.SetBool(IsJumping, true);
     }
 
     private void OnPlayerIdles()
@@ -47,6 +35,11 @@ public class PlayerVisuals : MonoBehaviour
     private void OnPlayerMoves()
     {
         _animator.SetBool(IsRunning, true);
+    }
+
+    private void Update()
+    {
+        _animator.SetBool(IsInAir, !_player.IsGrounded);
     }
 
     private void OnDisable()

@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     public event Action PlayerMoves;
     public event Action PlayerIdles;
     public event Action PlayerJumps;
-    public event Action PlayerLands;
 
     [Header("Input")]
     [SerializeField]
@@ -37,9 +36,11 @@ public class Player : MonoBehaviour
 
     private float _moveDirection = 0f;
     private float _throwDirection = 1f;
-    private bool _isGrounded = false;
+    public bool IsGrounded { get; private set; } = false;
 
     private bool _isBrushThrown = false;
+
+    private bool _isPlayerLandsEventInvoked = false;
 
     private void Reset()
     {
@@ -78,7 +79,7 @@ public class Player : MonoBehaviour
 
     private void OnJumpPerformed()
     {
-        if (!_isGrounded) return;
+        if (!IsGrounded) return;
         _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _jumpForce);
 
         PlayerJumps?.Invoke();
@@ -113,12 +114,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         float radius = 0.1f;
-        _isGrounded = Physics2D.OverlapCircle(_feetPosition.position, radius, _groundLayerMask);
-
-        if (_isGrounded)
-        {
-            PlayerLands?.Invoke();
-        }
+        IsGrounded = Physics2D.OverlapCircle(_feetPosition.position, radius, _groundLayerMask);
 
         if ((_brushRigidbody2D.transform.position - transform.position).magnitude > _maxBrushDistance)
         {
