@@ -13,9 +13,9 @@ public class PaintOutline : MonoBehaviour
   HashSet<Actor> _actors = new HashSet<Actor>();
 
   private static Material Dirt = new Material(MaterialType.Dirt, new Color(0.5f, 1f, 0f), true, false);
-  private static Material Empty = new Material(MaterialType.None, new Color(0.9f, 0.9f, 0.9f), false, false);
-  private static Material Lava = new Material(MaterialType.Lava, Color.red, false, true);
-  private static Material Water = new Material(MaterialType.Water, Color.blue, false, false);
+  private static Material Empty = new Material(MaterialType.None, new Color(1, 1, 1, 0.2f), false, false);
+  private static Material Lava = new Material(MaterialType.Lava, new Color(1, 0, 0, 0.5f), false, true);
+  private static Material Water = new Material(MaterialType.Water, new Color(0, 0, 1, 0.3f), false, false);
 
   void Start()
   {
@@ -28,11 +28,10 @@ public class PaintOutline : MonoBehaviour
 
   void Update()
   {
-    if (Input.GetKey(KeyCode.W)) Material = Water;
-    if (Input.GetKey(KeyCode.D)) Material = Dirt;
-    if (Input.GetKey(KeyCode.L)) Material = Lava;
-    if (Input.GetKey(KeyCode.Backspace)) Material = Empty;
-    ApplyMaterial();
+    if (Input.GetKey(KeyCode.W)) { Material = Water; ApplyMaterial(); }
+    if (Input.GetKey(KeyCode.D)) { Material = Dirt; ApplyMaterial(); }
+    if (Input.GetKey(KeyCode.L)) { Material = Lava; ApplyMaterial(); }
+    if (Input.GetKey(KeyCode.Backspace)) { Material = Empty; ApplyMaterial(); }
   }
 
   private void ApplyMaterial()
@@ -41,7 +40,7 @@ public class PaintOutline : MonoBehaviour
     _spriteRenderer.color = Material.Color;
     Heat.SetActive(Material.ProducesHeat);
     foreach (var actor in _actors)
-      actor.MaterialType = Material.Type;
+      actor.SetMaterial(Material.Type);
   }
 
   private void OnTriggerEnter2D(Collider2D other)
@@ -50,7 +49,7 @@ public class PaintOutline : MonoBehaviour
     if (actor)
     {
       _actors.Add(actor);
-      actor.MaterialType = Material.Type;
+      actor.SetMaterial(Material.Type);
     }
   }
 
@@ -60,7 +59,7 @@ public class PaintOutline : MonoBehaviour
     if (actor)
     {
       _actors.Remove(actor);
-      actor.MaterialType = MaterialType.None;
+      actor.SetMaterial(MaterialType.None);
     }
   }
 }
