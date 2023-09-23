@@ -1,8 +1,14 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
+    public event Action PlayerMoves;
+    public event Action PlayerIdles;
+    public event Action PlayerJumps;
+    public event Action PlayerLands;
+
     [Header("Input")]
     [SerializeField]
     private InputReader _inputReader;
@@ -74,11 +80,14 @@ public class Player : MonoBehaviour
     {
         if (!_isGrounded) return;
         _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _jumpForce);
+
+        PlayerJumps?.Invoke();
     }
 
     private void OnMoveCanceled()
     {
         _moveDirection = 0f;
+        PlayerIdles?.Invoke();
     }
 
     private void OnMovePerformed(float direction)
@@ -97,12 +106,19 @@ public class Player : MonoBehaviour
             localRotation.y = 180;
             transform.localRotation = localRotation;
         }
+
+        PlayerMoves?.Invoke();
     }
 
     private void Update()
     {
         float radius = 0.1f;
         _isGrounded = Physics2D.OverlapCircle(_feetPosition.position, radius, _groundLayerMask);
+
+        if (_isGrounded)
+        {
+            PlayerLands?.Invoke();
+        }
 
         if ((_brushRigidbody2D.transform.position - transform.position).magnitude > _maxBrushDistance)
         {
