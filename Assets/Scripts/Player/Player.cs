@@ -1,9 +1,14 @@
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : Actor
 {
+    public event Action PlayerMoves;
+    public event Action PlayerIdles;
+    public event Action PlayerJumps;
+
     [Header("Input")]
     [SerializeField]
     private InputReader _inputReader;
@@ -36,7 +41,7 @@ public class Player : Actor
 
     private float _moveDirection = 0f;
     private float _throwDirection = 1f;
-    private bool _isGrounded = false;
+    public bool IsGrounded { get; private set; } = false;
 
     private bool _isBrushThrown = false;
 
@@ -94,18 +99,20 @@ public class Player : Actor
 
     private void OnJumpPerformed()
     {
-        if (_isGrounded)
+        if (IsGrounded)
             _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _jumpForce);
         else if (_materialType == MaterialType.Lava)
             _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _jumpForce / 4);
         else if (_materialType == MaterialType.Water)
             _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _jumpForce / 2);
 
+        PlayerJumps?.Invoke();
     }
 
     private void OnMoveCanceled()
     {
         _moveDirection = 0f;
+        PlayerIdles?.Invoke();
     }
 
     private void OnMovePerformed(float direction)
@@ -124,12 +131,14 @@ public class Player : Actor
             localRotation.y = 180;
             transform.localRotation = localRotation;
         }
+
+        PlayerMoves?.Invoke();
     }
 
     protected override void Update()
     {
         float radius = 0.1f;
-        _isGrounded = Physics2D.OverlapCircle(_feetPosition.position, radius, _groundLayerMask);
+        IsGrounded = Physics2D.OverlapCircle(_feetPosition.position, radius, _groundLayerMask);
 
         if ((_brushRigidbody2D.transform.position - transform.position).magnitude > _maxBrushDistance)
         {
