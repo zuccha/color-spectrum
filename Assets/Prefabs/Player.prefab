@@ -567,7 +567,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4785289abeef436fb14ff79ee51fb79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _brushTipspriteRenderer: {fileID: 4023706895765105501}
+  _player: {fileID: 6338542060156076073}
+  _anchor: {fileID: 5844567240281280568}
+  _maxBrushDistance: 4
+  _minBrushDistance: 1
+  _brushTipSpriteRenderer: {fileID: 4023706895765105501}
+  _availableBrushColors: 01000000
 --- !u!61 &4984004642908668399
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -862,21 +867,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd4f2691bd65c246b24cf74703d0f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxLavaDamage: 2
+  _healthbar: {fileID: 0}
+  _lavaVulnerability: 100
   _inputReader: {fileID: 11400000, guid: c62743c9e4dc6144b87487c10570f19b, type: 2}
   _rigidbody2D: {fileID: 5338544309650300636}
   _feetPosition: {fileID: 1882227962943448347}
   _brush: {fileID: 3970758834044559888}
-  _brushRigidbody2D: {fileID: 2365272527215711786}
-  _brushBoxCollider2D: {fileID: 4984004642908668399}
-  _brushAnchor: {fileID: 5844567240281280568}
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
   _moveSpeed: 6
-  _jumpForce: 10
+  _jumpForce: 15
   _throwStrength: 20
-  _maxBrushDistance: 4
 --- !u!1 &9096962864458294987
 GameObject:
   m_ObjectHideFlags: 0

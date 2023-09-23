@@ -10,9 +10,11 @@ public enum BrushPaint
     Red,
 }
 
+public enum BrushState { Held, Thrown, Stuck, Returning }
+
 public class Brush : MonoBehaviour
 {
-    public bool IsStuck = false;
+    public BrushState State { get; private set; } = BrushState.Held;
 
     public BrushPaint Paint
     {
@@ -24,9 +26,23 @@ public class Brush : MonoBehaviour
         }
     }
 
-    private Rigidbody2D _rigidbody;
+    private BoxCollider2D _boxCollider2D;
+    private Rigidbody2D _rigidbody2D;
+
     [SerializeField]
-    private SpriteRenderer _brushTipspriteRenderer;
+    private Player _player;
+
+    [SerializeField]
+    private Transform _anchor;
+
+    [SerializeField]
+    private float _maxBrushDistance = 4f;
+
+    [SerializeField]
+    private float _minBrushDistance = 0.5f;
+
+    [SerializeField]
+    private SpriteRenderer _brushTipSpriteRenderer;
 
     private int _selectedBrushColorIndex = 0;
 
@@ -49,38 +65,91 @@ public class Brush : MonoBehaviour
 
     private void Start()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _brushTipspriteRenderer.color = ColorByPaint(Paint);
+        _boxCollider2D = GetComponent<BoxCollider2D>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _brushTipSpriteRenderer.color = ColorByPaint(Paint);
     }
 
     private void Update()
     {
-        IsMoving = _rigidbody.velocity != Vector2.zero;
+        IsMoving = State == BrushState.Thrown || State == BrushState.Returning;
+
+        if (State == BrushState.Thrown &&
+            (_rigidbody2D.transform.position - _player.transform.position).magnitude > _maxBrushDistance)
+            Free();
+
+        if (State == BrushState.Returning)
+        {
+            if ((_rigidbody2D.transform.position - _player.transform.position).magnitude < _minBrushDistance)
+            {
+                PutBack();
+            }
+            else
+            {
+                float speed = 10;
+                float maxDistance = speed * Time.deltaTime;
+                transform.position = Vector2.MoveTowards(transform.position, _anchor.position, maxDistance);
+            }
+        }
+
+
+    }
+
+    public void Throw(float direction, float strength)
+    {
+        if (State != BrushState.Held) return;
+
+        State = BrushState.Thrown;
+        _rigidbody2D.isKinematic = false;
+        _rigidbody2D.gravityScale = 0f;
+        _rigidbody2D.transform.SetParent(null);
+        _rigidbody2D.AddForce(new Vector2(direction, 0f) * strength, ForceMode2D.Impulse);
+        _boxCollider2D.enabled = true;
     }
 
     public void Stuck()
     {
-        _rigidbody.velocity = Vector2.zero;
-        IsStuck = true;
+        if (State != BrushState.Thrown) return;
+
+        State = BrushState.Stuck;
+        _rigidbody2D.velocity = Vector2.zero;
     }
 
     public void Free()
     {
-        _rigidbody.velocity = Vector2.zero;
-        IsStuck = false;
+        if (State != BrushState.Thrown && State != BrushState.Stuck) return;
+        _boxCollider2D.enabled = false;
+        _rigidbody2D.velocity = Vector2.zero;
+
+        State = BrushState.Returning;
+    }
+
+    public void PutBack()
+    {
+        State = BrushState.Held;
+        _rigidbody2D.isKinematic = true;
+        _rigidbody2D.velocity = Vector3.zero;
+        _rigidbody2D.transform.SetParent(_anchor);
+        _rigidbody2D.transform.localPosition = Vector3.zero;
+        transform.rotation = _player.transform.rotation;
+        _boxCollider2D.enabled = false;
     }
 
     public void SwitchBrushColorLeft()
     {
+        if (State != BrushState.Held) return;
+
         --_selectedBrushColorIndex;
         if (_selectedBrushColorIndex < 0) _selectedBrushColorIndex = _availableBrushColors.Count - 1;
-        _brushTipspriteRenderer.color = ColorByPaint(Paint);
+        _brushTipSpriteRenderer.color = ColorByPaint(Paint);
     }
 
     public void SwitchBrushColorRight()
     {
+        if (State != BrushState.Held) return;
+
         _selectedBrushColorIndex = (_selectedBrushColorIndex + 1) % _availableBrushColors.Count;
-        _brushTipspriteRenderer.color = ColorByPaint(Paint);
+        _brushTipSpriteRenderer.color = ColorByPaint(Paint);
     }
 
     public void AddPaint(BrushPaint paint, bool autoSelect)
@@ -90,7 +159,7 @@ public class Brush : MonoBehaviour
         if (autoSelect)
         {
             _selectedBrushColorIndex = _availableBrushColors.Count - 1;
-            _brushTipspriteRenderer.color = ColorByPaint(Paint);
+            _brushTipSpriteRenderer.color = ColorByPaint(Paint);
         }
     }
 }

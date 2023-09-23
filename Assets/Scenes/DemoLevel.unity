@@ -2011,7 +2011,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3970758834044559888, guid: b5f55a8a87beb3744aa60c1c71156193, type: 3}
       propertyPath: _availableBrushColors.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3970758834044559888, guid: b5f55a8a87beb3744aa60c1c71156193, type: 3}
       propertyPath: _availableBrushColors.Array.data[0]
@@ -2038,8 +2038,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2021278029}
     - target: {fileID: 6338542060156076073, guid: b5f55a8a87beb3744aa60c1c71156193, type: 3}
-      propertyPath: _jumpForce
-      value: 15
+      propertyPath: _lavaVulnerability
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7740881044317087348, guid: b5f55a8a87beb3744aa60c1c71156193, type: 3}
       propertyPath: m_SortingOrder
