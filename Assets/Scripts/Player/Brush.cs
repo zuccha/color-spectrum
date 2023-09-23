@@ -36,7 +36,10 @@ public class Brush : MonoBehaviour
     private Transform _anchor;
 
     [SerializeField]
-    private float _maxBrushDistance = 4f;
+    private float _maxBrushDistance = 15f;
+
+    [SerializeField]
+    private float _maxBrushThrowDistance = 4f;
 
     [SerializeField]
     private float _minBrushDistance = 0.5f;
@@ -81,8 +84,11 @@ public class Brush : MonoBehaviour
     {
         IsMoving = State == BrushState.Thrown || State == BrushState.Returning;
 
+        if ((_rigidbody2D.transform.position - _player.transform.position).magnitude > _maxBrushDistance)
+            Free();
+
         if (State == BrushState.Thrown &&
-            (_rigidbody2D.transform.position - _player.transform.position).magnitude > _maxBrushDistance)
+            (_rigidbody2D.transform.position - _player.transform.position).magnitude > _maxBrushThrowDistance)
             Free();
 
         if (State == BrushState.Returning)
@@ -98,8 +104,6 @@ public class Brush : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, _anchor.position, maxDistance);
             }
         }
-
-
     }
 
     public void Throw(float direction, float strength)
