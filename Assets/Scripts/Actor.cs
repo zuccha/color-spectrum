@@ -4,39 +4,51 @@ using UnityEngine;
 
 public class Actor : MonoBehaviour
 {
-  public float MaxLavaDamage = 2f;
+    public float MaxLavaDamage = 2f;
 
-  private MaterialType _materialType = MaterialType.None;
-  private float _damage = 0;
+    protected Vector2 _maxVelocity;
 
-  private Rigidbody2D _rigidbody;
+    private MaterialType _materialType = MaterialType.None;
+    private float _damage = 0;
+    private Rigidbody2D _rigidbody;
 
-  public void SetMaterial(MaterialType materialType)
-  {
-    _materialType = materialType;
-    _damage = 0;
-  }
-
-  private void Start()
-  {
-    _rigidbody = GetComponent<Rigidbody2D>();
-  }
-
-  private void Update()
-  {
-    switch (_materialType)
+    public void SetMaterial(MaterialType materialType)
     {
-      case MaterialType.Dirt:
-        gameObject.SetActive(false);
-        break;
-      case MaterialType.Lava:
-        _damage += Time.deltaTime;
-        _rigidbody.velocity = Vector2.ClampMagnitude(_rigidbody.velocity, 0.2f);
-        break;
-      case MaterialType.Water:
-        _rigidbody.velocity = Vector2.ClampMagnitude(_rigidbody.velocity, 0.4f);
-        break;
+        _materialType = materialType;
+        _damage = 0;
     }
-    if (_damage >= MaxLavaDamage) gameObject.SetActive(false);
-  }
+
+    protected virtual void Start()
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    protected virtual void Update()
+    {
+        switch (_materialType)
+        {
+            case MaterialType.Dirt:
+                gameObject.SetActive(false);
+                break;
+            case MaterialType.Lava:
+                _damage += Time.deltaTime;
+                _rigidbody.velocity = new Vector2(
+                    _rigidbody.velocity.x,
+                    Mathf.Max(_rigidbody.velocity.y, -0.5f)
+                );
+                break;
+            case MaterialType.Water:
+                _rigidbody.velocity = new Vector2(
+                    _rigidbody.velocity.x,
+                    Mathf.Max(_rigidbody.velocity.y, -1f)
+                );
+                break;
+        }
+        if (_damage >= MaxLavaDamage) gameObject.SetActive(false);
+    }
+
+    protected virtual void FixedUpdate()
+    {
+
+    }
 }

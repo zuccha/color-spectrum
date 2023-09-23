@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Player : MonoBehaviour
+public class Player : Actor
 {
     [Header("Input")]
     [SerializeField]
@@ -53,7 +53,6 @@ public class Player : MonoBehaviour
         if (!_isBrushThrown)
         {
             _isBrushThrown = true;
-            Debug.Log("Throwing");
             _brushRigidbody2D.isKinematic = false;
             _brushRigidbody2D.gravityScale = 0f;
             _brushRigidbody2D.transform.SetParent(null);
@@ -62,7 +61,6 @@ public class Player : MonoBehaviour
         else
         {
             _isBrushThrown = false;
-            Debug.Log("Calling");
             _brushRigidbody2D.isKinematic = true;
             _brushRigidbody2D.velocity = Vector3.zero;
             _brushRigidbody2D.transform.SetParent(_brushAnchor);
@@ -99,7 +97,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Update()
+    protected override void Update()
     {
         float radius = 0.1f;
         _isGrounded = Physics2D.OverlapCircle(_feetPosition.position, radius, _groundLayerMask);
@@ -108,11 +106,14 @@ public class Player : MonoBehaviour
         {
             _brushRigidbody2D.velocity = Vector2.zero;
         }
+
+        base.Update();
     }
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
         _rigidbody2D.velocity = new Vector2(_moveDirection * _moveSpeed, _rigidbody2D.velocity.y);
+        base.FixedUpdate();
     }
 
     private void OnDisable()

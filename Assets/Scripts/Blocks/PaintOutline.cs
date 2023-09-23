@@ -4,62 +4,62 @@ using UnityEngine;
 
 public class PaintOutline : MonoBehaviour
 {
-  public Material Material;
-  public GameObject Heat;
+    public Material Material;
+    public GameObject Heat;
 
-  BoxCollider2D _boxCollider;
-  SpriteRenderer _spriteRenderer;
+    BoxCollider2D _boxCollider;
+    SpriteRenderer _spriteRenderer;
 
-  HashSet<Actor> _actors = new HashSet<Actor>();
+    HashSet<Actor> _actors = new HashSet<Actor>();
 
-  private static Material Dirt = new Material(MaterialType.Dirt, new Color(0.5f, 1f, 0f), true, false);
-  private static Material Empty = new Material(MaterialType.None, new Color(1, 1, 1, 0.2f), false, false);
-  private static Material Lava = new Material(MaterialType.Lava, new Color(1, 0, 0, 0.5f), false, true);
-  private static Material Water = new Material(MaterialType.Water, new Color(0, 0, 1, 0.3f), false, false);
+    private static Material Dirt = new Material(MaterialType.Dirt, new Color(0.5f, 1f, 0f), true, false);
+    private static Material Empty = new Material(MaterialType.None, new Color(1, 1, 1, 0.2f), false, false);
+    private static Material Lava = new Material(MaterialType.Lava, new Color(1, 0, 0, 0.5f), false, true);
+    private static Material Water = new Material(MaterialType.Water, new Color(0, 0, 1, 0.3f), false, false);
 
-  void Start()
-  {
-    _boxCollider = GetComponent<BoxCollider2D>();
-    _spriteRenderer = GetComponent<SpriteRenderer>();
-
-    Material = Empty;
-    ApplyMaterial();
-  }
-
-  void Update()
-  {
-    if (Input.GetKey(KeyCode.W)) { Material = Water; ApplyMaterial(); }
-    if (Input.GetKey(KeyCode.D)) { Material = Dirt; ApplyMaterial(); }
-    if (Input.GetKey(KeyCode.L)) { Material = Lava; ApplyMaterial(); }
-    if (Input.GetKey(KeyCode.Backspace)) { Material = Empty; ApplyMaterial(); }
-  }
-
-  private void ApplyMaterial()
-  {
-    _boxCollider.isTrigger = !Material.IsSolid;
-    _spriteRenderer.color = Material.Color;
-    Heat.SetActive(Material.ProducesHeat);
-    foreach (var actor in _actors)
-      actor.SetMaterial(Material.Type);
-  }
-
-  private void OnTriggerEnter2D(Collider2D other)
-  {
-    Actor actor = other.GetComponent<Actor>();
-    if (actor)
+    void Start()
     {
-      _actors.Add(actor);
-      actor.SetMaterial(Material.Type);
-    }
-  }
+        _boxCollider = GetComponent<BoxCollider2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
 
-  private void OnTriggerExit2D(Collider2D other)
-  {
-    Actor actor = other.GetComponent<Actor>();
-    if (actor)
-    {
-      _actors.Remove(actor);
-      actor.SetMaterial(MaterialType.None);
+        Material = Empty;
+        ApplyMaterial();
     }
-  }
+
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.W)) { Material = Water; ApplyMaterial(); }
+        if (Input.GetKey(KeyCode.G)) { Material = Dirt; ApplyMaterial(); }
+        if (Input.GetKey(KeyCode.L)) { Material = Lava; ApplyMaterial(); }
+        if (Input.GetKey(KeyCode.Backspace)) { Material = Empty; ApplyMaterial(); }
+    }
+
+    private void ApplyMaterial()
+    {
+        _boxCollider.isTrigger = !Material.IsSolid;
+        _spriteRenderer.color = Material.Color;
+        Heat.SetActive(Material.ProducesHeat);
+        foreach (var actor in _actors)
+            actor.SetMaterial(Material.Type);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Actor actor = other.GetComponent<Actor>();
+        if (actor)
+        {
+            _actors.Add(actor);
+            actor.SetMaterial(Material.Type);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        Actor actor = other.GetComponent<Actor>();
+        if (actor)
+        {
+            _actors.Remove(actor);
+            actor.SetMaterial(MaterialType.None);
+        }
+    }
 }
