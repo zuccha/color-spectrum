@@ -23,7 +23,8 @@ public class Brush : MonoBehaviour
     }
 
     private Rigidbody2D _rigidbody;
-    private SpriteRenderer _spriteRenderer;
+    [SerializeField]
+    private SpriteRenderer _brushTipspriteRenderer;
 
     private int _selectedBrushColorIndex = 0;
     private List<BrushPaint> _availableBrushColors = new List<BrushPaint> {
@@ -47,8 +48,8 @@ public class Brush : MonoBehaviour
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        _spriteRenderer.color = ColorByPaint(Paint);
+        //_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _brushTipspriteRenderer.color = ColorByPaint(Paint);
     }
 
     public void Stop()
@@ -60,13 +61,13 @@ public class Brush : MonoBehaviour
     {
         --_selectedBrushColorIndex;
         if (_selectedBrushColorIndex < 0) _selectedBrushColorIndex = _availableBrushColors.Count - 1;
-        _spriteRenderer.color = ColorByPaint(Paint);
+        _brushTipspriteRenderer.color = ColorByPaint(Paint);
     }
 
     public void SwitchBrushColorRight()
     {
         _selectedBrushColorIndex = (_selectedBrushColorIndex + 1) % _availableBrushColors.Count;
-        _spriteRenderer.color = ColorByPaint(Paint);
+        _brushTipspriteRenderer.color = ColorByPaint(Paint);
     }
 
     public void AddPaint(BrushPaint paint, bool autoSelect)
@@ -76,7 +77,7 @@ public class Brush : MonoBehaviour
         if (autoSelect)
         {
             _selectedBrushColorIndex = _availableBrushColors.Count - 1;
-            _spriteRenderer.color = ColorByPaint(Paint);
+            _brushTipspriteRenderer.color = ColorByPaint(Paint);
         }
     }
 }
