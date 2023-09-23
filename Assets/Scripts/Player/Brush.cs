@@ -62,6 +62,7 @@ public class Brush : MonoBehaviour
     {
         _rigidbody.velocity = Vector2.zero;
         IsStuck = true;
+        CameraShake.Instance.ShakeCamera(0.5f, 0.25f);
     }
 
     public void Free()
