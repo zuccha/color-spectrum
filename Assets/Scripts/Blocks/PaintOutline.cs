@@ -37,6 +37,7 @@ public class PaintOutline : MonoBehaviour
         ParticleSystem.ShapeModule heatParticlesShapeModule = HeatParticles.shape;
         heatParticlesShapeModule.radius = _spriteRenderer.size.x / 2;
         Heat.transform.localPosition = new Vector3(0.0f, _spriteRenderer.size.y / 2 + HeatHeight / 2, Heat.transform.localPosition.z);
+        HeatParticles.transform.localPosition = new Vector3(0.0f, _spriteRenderer.size.y / 2, HeatParticles.transform.localPosition.z); ;
         _fillColorSpriteRenderer.size = _spriteRenderer.size;
         _fillColorSpriteRenderer.enabled = false;
     }
