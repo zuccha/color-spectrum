@@ -157,11 +157,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 128399983447244720, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 9.2202
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 128399983447244720, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1.2881
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 128399983447244720, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -193,11 +193,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 128399983447244720, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 40.6101
+      value: 41
       objectReference: {fileID: 0}
     - target: {fileID: 128399983447244720, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 8.106
+      value: 8.25
       objectReference: {fileID: 0}
     - target: {fileID: 128399983447244720, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -612,7 +612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7661446965747726868, guid: 613b8a4e5066044789ceeaba378cc8f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 44.125
+      value: 66.625
       objectReference: {fileID: 0}
     - target: {fileID: 7661446965747726868, guid: 613b8a4e5066044789ceeaba378cc8f0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -906,11 +906,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 128399983447244720, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 9.2202
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 128399983447244720, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1.2881
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 128399983447244720, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -942,11 +942,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 128399983447244720, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1.3600998
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 128399983447244720, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.106
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 128399983447244720, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -966,7 +966,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8930958645991057184, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
       propertyPath: m_text
-      value: "Press S or \u25A1 to throw the brush"
+      value: Press <sprite index="411"> or <sprite index="406"><sprite index="407">
+        to throw the brush
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930958645991057184, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1388,11 +1393,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2273641920096104249, guid: 28634db60dc2f42f387c69d157f22df1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 41.90339
+      value: 66.65339
       objectReference: {fileID: 0}
     - target: {fileID: 2273641920096104249, guid: 28634db60dc2f42f387c69d157f22df1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.512056
+      value: 12.762056
       objectReference: {fileID: 0}
     - target: {fileID: 2273641920096104249, guid: 28634db60dc2f42f387c69d157f22df1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1469,11 +1474,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 128399983447244720, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 9.2202
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 128399983447244720, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1.2881
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 128399983447244720, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1509,7 +1514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 128399983447244720, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.106
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 128399983447244720, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1529,7 +1534,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8930958645991057184, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
       propertyPath: m_text
-      value: "Press S or \u25A1 to call back the brush"
+      value: Press <sprite index="411"> or <sprite index="406"><sprite index="407">
+        to call back the brush
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930958645991057184, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -13,6 +13,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField]
     private Button _resumeButton;
     [SerializeField]
+    private Button _restartLevelButton;
+    [SerializeField]
     private Button _backToMainMenuButton;
 
     private void Start()
@@ -25,6 +27,10 @@ public class PauseMenu : MonoBehaviour
         _resumeButton.onClick.AddListener(() =>
         {
             Hide();
+        });
+        _restartLevelButton.onClick.AddListener(() =>
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         });
         _backToMainMenuButton.onClick.AddListener(() =>
         {

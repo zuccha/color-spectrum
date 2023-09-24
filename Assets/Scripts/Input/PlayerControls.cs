@@ -228,6 +228,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""8d829f8d-8231-44f5-bffd-07cbcade576b"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ThrowBrush"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""c9576388-61d2-4e8f-bf5f-eda2b59e6026"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
