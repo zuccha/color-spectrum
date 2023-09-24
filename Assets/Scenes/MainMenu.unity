@@ -707,6 +707,8 @@ MonoBehaviour:
   _menuInputReader: {fileID: 11400000, guid: efb7d58ddd74e4c9b894be2d82c937b6, type: 2}
   _itemPlay: {fileID: 664225944}
   _itemQuit: {fileID: 1303142992}
+  _switchClip: {fileID: 8300000, guid: 19855ff8d06145041b4a4d31cb700826, type: 3}
+  _confirmClip: {fileID: 8300000, guid: 95d9cf06b47f4904393cbd85f10b7502, type: 3}
 --- !u!1 &1056481334
 GameObject:
   m_ObjectHideFlags: 0
