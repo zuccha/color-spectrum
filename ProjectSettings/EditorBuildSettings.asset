@@ -24,6 +24,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Level - 003.unity
     guid: cf0a88649b80f4410bcdecd96f3fc447
   - enabled: 1
-    path: Assets/Scenes/Level - 004.unity
+    path: Assets/Scenes/Level - 004 (ELEGIST).unity
     guid: a25792b95bd594d4a8a331ab56aa31b7
+  - enabled: 1
+    path: Assets/Scenes/Level - 005 (ELEGIST).unity
+    guid: 25e6cdb1d2c271743b241f495cd98112
+  - enabled: 1
+    path: Assets/Scenes/Level - 006 (ELEGIST).unity
+    guid: f44cd0e3a303f3e4f96a069d04726ba0
   m_configObjects: {}
