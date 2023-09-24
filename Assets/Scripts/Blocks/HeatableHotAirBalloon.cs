@@ -25,6 +25,6 @@ public class HeatableHotAirBalloon : Heatable
           Mathf.Max(transform.position.y, _initialPositionY),
           transform.position.z);
 
-        _animator.Play("HotAirBalloonHeat", -1, (float)_heat / MAX_HEAT);
+        _animator.Play("HotAirBalloonHeat", -1, _heat / MAX_HEAT);
     }
 }
