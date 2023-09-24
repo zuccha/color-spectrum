@@ -6,6 +6,10 @@ public class PaintItem : MonoBehaviour
 {
     public BrushPaint Paint;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioClip _collectSplashClip;
+
     private void Start()
     {
         var spriteRenderer = GetComponent<SpriteRenderer>();
@@ -18,6 +22,7 @@ public class PaintItem : MonoBehaviour
         if (player)
         {
             player.AddBrushPaint(Paint);
+            AudioManager.Instance.PlayEffect(_collectSplashClip, 1.1f);
             gameObject.SetActive(false);
         }
     }

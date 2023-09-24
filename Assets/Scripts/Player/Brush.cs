@@ -59,6 +59,12 @@ public class Brush : MonoBehaviour
 
     private PaintOutline _lastTouchedPaintOutline;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioClip _paintClip;
+    [SerializeField]
+    private AudioClip _throwClip;
+
     public bool IsMoving { get; private set; } = false;
 
     public static Color ColorByPaint(BrushPaint paint)
@@ -116,6 +122,8 @@ public class Brush : MonoBehaviour
         _rigidbody2D.transform.SetParent(null);
         _rigidbody2D.AddForce(new Vector2(direction, 0f) * strength, ForceMode2D.Impulse);
         _boxCollider2D.enabled = true;
+
+        AudioManager.Instance.PlayEffect(_throwClip);
     }
 
     public void Stuck(PaintOutline paintOutline)
@@ -126,6 +134,8 @@ public class Brush : MonoBehaviour
         _rigidbody2D.velocity = Vector2.zero;
         _lastTouchedPaintOutline = paintOutline;
         CameraShake.Instance.ShakeCamera(_cameraShakeIntensity, _cameraShakeDuration);
+
+        AudioManager.Instance.PlayEffect(_paintClip);
     }
 
     public void Free()
@@ -139,6 +149,8 @@ public class Brush : MonoBehaviour
         }
 
         State = BrushState.Returning;
+
+        AudioManager.Instance.PlayEffect(_throwClip);
     }
 
     public void PutBack()

@@ -4973,3 +4973,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Paint: 0
+  _collectSplashClip: {fileID: 8300000, guid: 7c9488d01f25df8478f2e9a1d7a5feb1, type: 3}

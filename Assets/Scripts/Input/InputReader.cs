@@ -17,6 +17,8 @@ public class InputReader : ScriptableObject, PlayerControls.IGameplayActions
     public event Action SwitchBrushColorLeft;
     public event Action SwitchBrushColorRight;
 
+    public event Action PausePerformed;
+
     private void OnEnable()
     {
         if (_playerControls == null)
@@ -81,6 +83,16 @@ public class InputReader : ScriptableObject, PlayerControls.IGameplayActions
         {
             case InputActionPhase.Performed:
                 SwitchBrushColorRight?.Invoke();
+                break;
+        }
+    }
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Performed:
+                PausePerformed?.Invoke();
                 break;
         }
     }

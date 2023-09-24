@@ -4915,7 +4915,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2031568946487446405}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.4660809, w: 0.88474214}
+  m_LocalRotation: {x: 0, y: 0, z: -0.46608055, w: 0.8847423}
   m_LocalPosition: {x: 0.28946695, y: 0.00000050536204, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10025,6 +10025,8 @@ MonoBehaviour:
   _animator: {fileID: 6843195458745332223}
   _player: {fileID: 6338542060156076073}
   _dustParticles: {fileID: 3093407626575104588}
+  _footstepClip: {fileID: 8300000, guid: 0bb8665a9793a244e8aa38e58d3613ff, type: 3}
+  _jumpClip: {fileID: 8300000, guid: 7c776096800da55439b62d7110c35717, type: 3}
 --- !u!1 &4396714216658715751
 GameObject:
   m_ObjectHideFlags: 0
@@ -10233,6 +10235,8 @@ MonoBehaviour:
   _cameraShakeIntensity: 0.5
   _cameraShakeDuration: 0.25
   _availableBrushColors: 01000000
+  _paintClip: {fileID: 8300000, guid: c1f2468b615256c4a87625563bb083e8, type: 3}
+  _throwClip: {fileID: 8300000, guid: 9972515a8e6b22948801329412049d9b, type: 3}
 --- !u!61 &4984004642908668399
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10302,7 +10306,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8092522306943701307}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.9751689, w: 0.22146246}
+  m_LocalRotation: {x: 0, y: 0, z: -0.975169, w: 0.22146232}
   m_LocalPosition: {x: 0.025973145, y: -0.39437643, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10689,7 +10693,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9196354619257600735}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.81766003, w: 0.5757014}
+  m_LocalRotation: {x: -0, y: -0, z: 0.81765985, w: 0.5757016}
   m_LocalPosition: {x: 0.21090339, y: 0.0000005002683, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

@@ -71,6 +71,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""7eb9cd8f-2c68-455a-b963-8e73a92680dd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -260,6 +269,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""SwitchBrushColorRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27aca165-421a-4a79-8129-b5ea0d63266d"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""80c473a0-be91-4996-bcac-321b9787fe79"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -407,6 +438,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Gameplay_ThrowBrush = m_Gameplay.FindAction("ThrowBrush", throwIfNotFound: true);
         m_Gameplay_SwitchBrushColorLeft = m_Gameplay.FindAction("SwitchBrushColorLeft", throwIfNotFound: true);
         m_Gameplay_SwitchBrushColorRight = m_Gameplay.FindAction("SwitchBrushColorRight", throwIfNotFound: true);
+        m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_MoveUp = m_Menu.FindAction("MoveUp", throwIfNotFound: true);
@@ -478,6 +510,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_ThrowBrush;
     private readonly InputAction m_Gameplay_SwitchBrushColorLeft;
     private readonly InputAction m_Gameplay_SwitchBrushColorRight;
+    private readonly InputAction m_Gameplay_Pause;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -487,6 +520,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @ThrowBrush => m_Wrapper.m_Gameplay_ThrowBrush;
         public InputAction @SwitchBrushColorLeft => m_Wrapper.m_Gameplay_SwitchBrushColorLeft;
         public InputAction @SwitchBrushColorRight => m_Wrapper.m_Gameplay_SwitchBrushColorRight;
+        public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -511,6 +545,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SwitchBrushColorRight.started += instance.OnSwitchBrushColorRight;
             @SwitchBrushColorRight.performed += instance.OnSwitchBrushColorRight;
             @SwitchBrushColorRight.canceled += instance.OnSwitchBrushColorRight;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -530,6 +567,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SwitchBrushColorRight.started -= instance.OnSwitchBrushColorRight;
             @SwitchBrushColorRight.performed -= instance.OnSwitchBrushColorRight;
             @SwitchBrushColorRight.canceled -= instance.OnSwitchBrushColorRight;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -616,6 +656,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnThrowBrush(InputAction.CallbackContext context);
         void OnSwitchBrushColorLeft(InputAction.CallbackContext context);
         void OnSwitchBrushColorRight(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

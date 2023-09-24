@@ -13,6 +13,12 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private MainMenuItem _itemQuit;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioClip _switchClip;
+    [SerializeField]
+    private AudioClip _confirmClip;
+
     private void Start()
     {
         _itemPlay.Select();
@@ -34,12 +40,14 @@ public class MainMenu : MonoBehaviour
 
     private void OnConfirm()
     {
+        AudioManager.Instance.PlayEffect(_confirmClip);
         if (_itemPlay.IsSelected) _itemPlay.Activate();
         if (_itemQuit.IsSelected) _itemQuit.Activate();
     }
 
     private void OnMoveDown()
     {
+        AudioManager.Instance.PlayEffect(_switchClip);
         if (_itemPlay.IsSelected)
         {
             _itemPlay.Deselect();
@@ -54,6 +62,7 @@ public class MainMenu : MonoBehaviour
 
     private void OnMoveUp()
     {
+        AudioManager.Instance.PlayEffect(_switchClip);
         if (_itemPlay.IsSelected)
         {
             _itemPlay.Deselect();
