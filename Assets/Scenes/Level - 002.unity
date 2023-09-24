@@ -217,7 +217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8930958645991057184, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
       propertyPath: m_text
-      value: The brush will coma back to you automatically if it's too far
+      value: The brush will come back to you automatically if it's too far
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -604,7 +604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7661446965747726868, guid: 613b8a4e5066044789ceeaba378cc8f0, type: 3}
       propertyPath: m_LocalScale.x
-      value: 11.247253
+      value: 10.746751
       objectReference: {fileID: 0}
     - target: {fileID: 7661446965747726868, guid: 613b8a4e5066044789ceeaba378cc8f0, type: 3}
       propertyPath: m_LocalScale.y
@@ -612,7 +612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7661446965747726868, guid: 613b8a4e5066044789ceeaba378cc8f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 44.375
+      value: 44.125
       objectReference: {fileID: 0}
     - target: {fileID: 7661446965747726868, guid: 613b8a4e5066044789ceeaba378cc8f0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1153,6 +1153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c737e027d6e648fda0e00294faa652f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collectSplashClip: {fileID: 8300000, guid: 7c9488d01f25df8478f2e9a1d7a5feb1, type: 3}
 --- !u!4 &1679634683 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9165388613950264318, guid: b5f55a8a87beb3744aa60c1c71156193, type: 3}

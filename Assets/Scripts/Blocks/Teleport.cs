@@ -10,6 +10,10 @@ public class Teleport : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        SceneManager.LoadScene(_sceneName);
+        Player player = other.GetComponent<Player>();
+        if (player)
+        {
+            SceneManager.LoadScene(_sceneName);
+        }
     }
 }

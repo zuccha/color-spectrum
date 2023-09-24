@@ -7,6 +7,6 @@ public class MainMenuItemPlay : MainMenuItem
 {
     public override void Activate()
     {
-        SceneManager.LoadScene("DemoLevel");
+        SceneManager.LoadScene("Level - 001");
     }
 }

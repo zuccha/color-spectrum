@@ -1408,6 +1408,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tutorial - Walk
       objectReference: {fileID: 0}
+    - target: {fileID: 8930958645991057184, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
+      propertyPath: m_text
+      value: "Press \u2190 and \u2192 to move"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
