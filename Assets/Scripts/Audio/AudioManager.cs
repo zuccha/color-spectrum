@@ -61,8 +61,8 @@ public class AudioManager : MonoBehaviour
         {
             PlayMusic(_menuMusicClip);
         }
-
-        if (_currentSceneName == "DemoLevel")
+        
+        if (_currentSceneName == "Level - 001")
         {
             PlayMusic(_levelMusicClip);
         }
