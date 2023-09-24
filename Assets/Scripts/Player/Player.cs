@@ -32,6 +32,8 @@ public class Player : Actor
     private float _jumpForce = 10f;
     [SerializeField]
     private float _throwStrength = 10f;
+    [SerializeField]
+    private bool _hasBrush = true;
 
     private float _moveDirection = 0f;
     private float _throwDirection = 1f;
@@ -44,12 +46,25 @@ public class Player : Actor
 
     public override void Kill()
     {
-        SceneManager.LoadScene("DemoLevel");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void SetHasBrush(bool hasBrush)
+    {
+        _hasBrush = hasBrush;
+        _brush.gameObject.SetActive(hasBrush);
+        if (hasBrush) _brush.PutBack();
     }
 
     private void Reset()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        _brush.gameObject.SetActive(_hasBrush);
     }
 
     private void OnEnable()
@@ -64,6 +79,8 @@ public class Player : Actor
 
     private void OnThrowBrushPerformed()
     {
+        if (!_hasBrush) return;
+
         if (_brush.State == BrushState.Held)
             _brush.Throw(_throwDirection, _throwStrength);
         else
@@ -72,11 +89,13 @@ public class Player : Actor
 
     private void OnSwitchBrushColorLeft()
     {
+        if (!_hasBrush) return;
         _brush.SwitchBrushColorLeft();
     }
 
     private void OnSwitchBrushColorRight()
     {
+        if (!_hasBrush) return;
         _brush.SwitchBrushColorRight();
     }
 
