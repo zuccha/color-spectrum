@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Paint: 3
+  _collectSplashClip: {fileID: 8300000, guid: 7c9488d01f25df8478f2e9a1d7a5feb1, type: 3}
 --- !u!1 &8669958495677209356
 GameObject:
   m_ObjectHideFlags: 0

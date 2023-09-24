@@ -15,6 +15,12 @@ public class PlayerVisuals : MonoBehaviour
     [SerializeField]
     private ParticleSystem _dustParticles;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioClip _footstepClip;
+    [SerializeField]
+    private AudioClip _jumpClip;
+
     private readonly int IsRunning = Animator.StringToHash("IsRunning");
     private readonly int IsInAir = Animator.StringToHash("IsInAir");
 
@@ -34,6 +40,7 @@ public class PlayerVisuals : MonoBehaviour
     private void OnPlayerJumps()
     {
         _dustParticles.Play();
+        PlayJumpClip();
     }
 
     private void OnPlayerChangedDirection()
@@ -54,6 +61,16 @@ public class PlayerVisuals : MonoBehaviour
     public void EmitDustParticles()
     {
         _dustParticles.Play();
+    }
+
+    public void PlayFootstepClip()
+    {
+        AudioManager.Instance.PlayEffect(_footstepClip, 0.4f);
+    }
+
+    public void PlayJumpClip()
+    {
+        AudioManager.Instance.PlayEffect(_jumpClip, 0.4f);
     }
 
     private void Update()
