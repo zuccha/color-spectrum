@@ -45,6 +45,9 @@ public class Brush : MonoBehaviour
     private float _minBrushDistance = 0.5f;
 
     [SerializeField]
+    private float _returnSpeed = 20;
+
+    [SerializeField]
     private SpriteRenderer _brushTipSpriteRenderer;
 
     [SerializeField]
@@ -105,8 +108,7 @@ public class Brush : MonoBehaviour
             }
             else
             {
-                float speed = 10;
-                float maxDistance = speed * Time.deltaTime;
+                float maxDistance = _returnSpeed * Time.deltaTime;
                 transform.position = Vector2.MoveTowards(transform.position, _anchor.position, maxDistance);
             }
         }

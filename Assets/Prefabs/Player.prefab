@@ -10229,7 +10229,7 @@ MonoBehaviour:
   _player: {fileID: 6338542060156076073}
   _anchor: {fileID: 5844567240281280568}
   _maxBrushDistance: 15
-  _maxBrushThrowDistance: 4
+  _maxBrushThrowDistance: 6
   _minBrushDistance: 1
   _brushTipSpriteRenderer: {fileID: 4023706895765105501}
   _cameraShakeIntensity: 0.5
@@ -10546,6 +10546,7 @@ MonoBehaviour:
   _moveSpeed: 6
   _jumpForce: 15
   _throwStrength: 20
+  _hasBrush: 1
 --- !u!1 &9011552775534553966
 GameObject:
   m_ObjectHideFlags: 0
