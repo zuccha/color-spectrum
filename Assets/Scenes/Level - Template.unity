@@ -607,7 +607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3970758834044559888, guid: b5f55a8a87beb3744aa60c1c71156193, type: 3}
       propertyPath: _availableBrushColors.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3970758834044559888, guid: b5f55a8a87beb3744aa60c1c71156193, type: 3}
       propertyPath: _availableBrushColors.Array.data[0]
@@ -873,6 +873,10 @@ PrefabInstance:
     - target: {fileID: 7039672654789533551, guid: a18c4668728654512a8e41012028dd8d, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847394503099619565, guid: a18c4668728654512a8e41012028dd8d, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

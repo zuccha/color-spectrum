@@ -5,7 +5,7 @@ using UnityEngine;
 public enum BrushPaint
 {
     Blue,
-    Brown,
+    Black,
     Green,
     Red,
 }
@@ -22,7 +22,7 @@ public class Brush : MonoBehaviour
         {
             return 0 <= _selectedBrushColorIndex && _selectedBrushColorIndex < _availableBrushColors.Count
                 ? _availableBrushColors[_selectedBrushColorIndex]
-                : BrushPaint.Brown;
+                : BrushPaint.Black;
         }
     }
 
@@ -55,7 +55,7 @@ public class Brush : MonoBehaviour
     private int _selectedBrushColorIndex = 0;
 
     [SerializeField]
-    private List<BrushPaint> _availableBrushColors = new List<BrushPaint> { BrushPaint.Brown };
+    private List<BrushPaint> _availableBrushColors = new List<BrushPaint> { BrushPaint.Black };
 
     private PaintOutline _lastTouchedPaintOutline;
 
@@ -72,11 +72,11 @@ public class Brush : MonoBehaviour
         switch (paint)
         {
             case BrushPaint.Blue: return Color.blue;
-            case BrushPaint.Brown: return Color.yellow;
+            case BrushPaint.Black: return Color.black;
             case BrushPaint.Green: return Color.green;
             case BrushPaint.Red: return Color.red;
         }
-        return Color.yellow;
+        return Color.white;
     }
 
     private void Start()

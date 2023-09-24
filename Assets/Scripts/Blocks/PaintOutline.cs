@@ -18,7 +18,7 @@ public class PaintOutline : MonoBehaviour
     HashSet<Actor> _actors = new HashSet<Actor>();
     HashSet<Mouth> _mouths = new HashSet<Mouth>();
 
-    private static Material Dirt = new Material(MaterialType.Dirt, new Color(1, 1, 0), true, false);
+    private static Material Dirt = new Material(MaterialType.Dirt, new Color(0, 0, 0), true, false);
     private static Material Empty = new Material(MaterialType.None, new Color(1, 1, 1), false, false);
     private static Material Lava = new Material(MaterialType.Lava, new Color(1, 0, 0), false, true);
     private static Material Water = new Material(MaterialType.Water, new Color(0, 0, 1), false, false);
@@ -73,7 +73,7 @@ public class PaintOutline : MonoBehaviour
             switch (brush.Paint)
             {
                 case BrushPaint.Blue: Material = Water; break;
-                case BrushPaint.Brown: Material = Dirt; break;
+                case BrushPaint.Black: Material = Dirt; break;
                 case BrushPaint.Red: Material = Lava; break;
             }
             ApplyMaterial();
