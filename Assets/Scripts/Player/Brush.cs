@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,8 @@ public enum BrushState { Held, Thrown, Stuck, Returning }
 public class Brush : MonoBehaviour
 {
     public BrushState State { get; private set; } = BrushState.Held;
+
+    public event Action<Color> BrushColorAdded;
 
     public BrushPaint Paint
     {
@@ -69,6 +72,11 @@ public class Brush : MonoBehaviour
     private AudioClip _throwClip;
 
     public bool IsMoving { get; private set; } = false;
+
+    public List<BrushPaint> GetAvailableBrushColors()
+    {
+        return _availableBrushColors;
+    }
 
     public static Color ColorByPaint(BrushPaint paint)
     {
@@ -193,6 +201,8 @@ public class Brush : MonoBehaviour
             _selectedBrushColorIndex = _availableBrushColors.Count - 1;
             _brushTipSpriteRenderer.color = ColorByPaint(Paint);
         }
+
+        BrushColorAdded?.Invoke(ColorByPaint(paint));
     }
 
     private void OnTriggerEnter2D(Collider2D other)
