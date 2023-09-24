@@ -5059,7 +5059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Heat: {fileID: 2708914423410915207}
-  HeatParticles: {fileID: 0}
+  HeatParticles: {fileID: 4624423125614795516}
   HeatHeight: 6
   _fillColorSpriteRenderer: {fileID: 7192024138026425}
 --- !u!1 &2708914423410915207

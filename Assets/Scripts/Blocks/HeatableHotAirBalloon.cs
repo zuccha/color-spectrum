@@ -8,6 +8,9 @@ public class HeatableHotAirBalloon : Heatable
     private Rigidbody2D _rigidbody;
     private float _initialPositionY;
 
+    [SerializeField]
+    private float _floatSpeed = 0.5f;
+
     private void Start()
     {
         _initialPositionY = transform.position.y;
@@ -19,7 +22,7 @@ public class HeatableHotAirBalloon : Heatable
     {
         base.Update();
 
-        _rigidbody.velocity = _isHeating ? Vector2.up * 0.5f : Vector2.down * 0.5f;
+        _rigidbody.velocity = _isHeating ? Vector2.up * _floatSpeed : Vector2.down * _floatSpeed * 1.5f;
         transform.position = new Vector3(
           transform.position.x,
           Mathf.Max(transform.position.y, _initialPositionY),
