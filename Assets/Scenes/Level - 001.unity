@@ -282,7 +282,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8930958645991057184, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
       propertyPath: m_text
-      value: Touch the smoke to teleport
+      value: Touch the rainbow cloud to teleport
       objectReference: {fileID: 0}
     - target: {fileID: 8930958645991057184, guid: 873ea1ed9f154434883ac7b06ae1e47b, type: 3}
       propertyPath: m_hasFontAssetChanged
