@@ -1408,7 +1408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.034784317, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2050,7 +2050,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.56, y: -0.25}
+  m_AnchoredPosition: {x: 2.5600586, y: -0.25}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2021278029
@@ -2066,6 +2066,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthBarSprite: {fileID: 988183933}
+  _healthBarGreenSprite: {fileID: 21300000, guid: fa7730d56456949ce8ad8fe89f9e1177, type: 3}
+  _healthBarRedSprite: {fileID: 21300000, guid: a49322095e90544bd82e3a10c648375a, type: 3}
+  _healthBarYellowSprite: {fileID: 21300000, guid: b66a458f322b9471dafb1570b9386542, type: 3}
 --- !u!1 &2037113105
 GameObject:
   m_ObjectHideFlags: 0
