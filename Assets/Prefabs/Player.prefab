@@ -10231,6 +10231,7 @@ MonoBehaviour:
   _maxBrushDistance: 15
   _maxBrushThrowDistance: 6
   _minBrushDistance: 1
+  _returnSpeed: 20
   _brushTipSpriteRenderer: {fileID: 4023706895765105501}
   _cameraShakeIntensity: 0.5
   _cameraShakeDuration: 0.25
@@ -10638,6 +10639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bubbleParticles: {fileID: 5643461785712208287}
+  _bubbleClip: {fileID: 8300000, guid: eb6aa71095747451f90a67caea4b5666, type: 3}
 --- !u!1 &9096962864458294987
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,8 @@ public class AudioManager : MonoBehaviour
     private AudioSource _musicSource;
     [SerializeField]
     private AudioSource _effectsSource;
+    [SerializeField]
+    private AudioSource _environmentSource;
 
     private String _currentSceneName;
     private String _previousSceneName;
@@ -61,7 +63,7 @@ public class AudioManager : MonoBehaviour
         {
             PlayMusic(_menuMusicClip);
         }
-        
+
         if (_currentSceneName == "Level - 001")
         {
             PlayMusic(_levelMusicClip);
@@ -77,5 +79,16 @@ public class AudioManager : MonoBehaviour
     public void PlayEffect(AudioClip audioClip, float volumeScale = 1f)
     {
         _effectsSource.PlayOneShot(audioClip, volumeScale);
+    }
+
+    public void PlayEnvironment(AudioClip audioClip, float volumeScale = 1f)
+    {
+        _environmentSource.clip = audioClip;
+        _environmentSource.Play();
+    }
+
+    public void StopEnvironment()
+    {
+        _environmentSource.Stop();
     }
 }
