@@ -53,7 +53,6 @@ public class Player : Actor
     {
         _hasBrush = hasBrush;
         _brush.gameObject.SetActive(hasBrush);
-        if (hasBrush) _brush.PutBack();
     }
 
     private void Reset()
