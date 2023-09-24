@@ -198,6 +198,9 @@ public class Brush : MonoBehaviour
         Actor actor = other.GetComponent<Actor>();
         if (actor) return;
 
+        Mouth mouth = other.GetComponent<Mouth>();
+        if (mouth) return;
+
         PaintOutline paintOutline = other.GetComponent<PaintOutline>();
         if (paintOutline) return;
 
