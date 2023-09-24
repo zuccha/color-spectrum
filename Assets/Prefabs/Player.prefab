@@ -10231,6 +10231,7 @@ MonoBehaviour:
   _maxBrushDistance: 15
   _maxBrushThrowDistance: 6
   _minBrushDistance: 1
+  _returnSpeed: 20
   _brushTipSpriteRenderer: {fileID: 4023706895765105501}
   _cameraShakeIntensity: 0.5
   _cameraShakeDuration: 0.25
@@ -10558,7 +10559,7 @@ GameObject:
   - component: {fileID: 2999188815384415664}
   - component: {fileID: 6153547824442097085}
   - component: {fileID: 7773728757584459871}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
