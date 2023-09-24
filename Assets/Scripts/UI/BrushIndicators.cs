@@ -26,7 +26,6 @@ public class BrushIndicators : MonoBehaviour
 
     private void OnBrushColorAdded(Color _brushTipColor)
     {
-        Debug.Log(_brushTipColor);
         GameObject _brushIndicator = Instantiate(_brushIndicatorPrefab, _horizontalContainer);
         _brushIndicator.GetComponent<BrushIndicator>().SetTintColor(_brushTipColor);
     }

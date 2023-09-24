@@ -14,6 +14,7 @@ public class BrushItem : MonoBehaviour
         if (player)
         {
             player.SetHasBrush(true);
+            player.AddBrushPaint(BrushPaint.Black);
             AudioManager.Instance.PlayEffect(_collectSplashClip, 1.1f);
             gameObject.SetActive(false);
         }
