@@ -18,6 +18,7 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         Hide();
+        _resumeButton.Select();
 
         _inputReader.PausePerformed += OnPausePerformed;
 
