@@ -7,6 +7,7 @@ public class PaintOutline : MonoBehaviour
 {
     public Material Material;
     public GameObject Heat;
+    public ParticleSystem HeatParticles;
     public float HeatHeight = 6;
 
     BoxCollider2D _boxCollider;
@@ -31,9 +32,10 @@ public class PaintOutline : MonoBehaviour
         ApplyMaterial();
 
         BoxCollider2D heatBoxCollider = Heat.GetComponent<BoxCollider2D>();
-        SpriteRenderer heatSpriteRenderer = Heat.GetComponent<SpriteRenderer>();
         heatBoxCollider.size = new Vector2(_spriteRenderer.size.x, HeatHeight);
-        heatSpriteRenderer.size = heatBoxCollider.size;
+        HeatParticles.Stop();
+        ParticleSystem.ShapeModule heatParticlesShapeModule = HeatParticles.shape;
+        heatParticlesShapeModule.radius = _spriteRenderer.size.x / 2;
         Heat.transform.localPosition = new Vector3(0.0f, _spriteRenderer.size.y / 2 + HeatHeight / 2, Heat.transform.localPosition.z);
         _fillColorSpriteRenderer.size = _spriteRenderer.size;
         _fillColorSpriteRenderer.enabled = false;
@@ -47,6 +49,8 @@ public class PaintOutline : MonoBehaviour
         if (Heat != null)
         {
             Heat.SetActive(Material.ProducesHeat);
+            if (Material.ProducesHeat) HeatParticles.Play();
+            else HeatParticles.Stop();
         }
         foreach (var actor in _actors)
             actor.SetMaterial(Material.Type);
