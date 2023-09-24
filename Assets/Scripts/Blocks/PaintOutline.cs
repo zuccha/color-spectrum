@@ -15,6 +15,7 @@ public class PaintOutline : MonoBehaviour
     private SpriteRenderer _fillColorSpriteRenderer;
 
     HashSet<Actor> _actors = new HashSet<Actor>();
+    HashSet<Mouth> _mouths = new HashSet<Mouth>();
 
     private static Material Dirt = new Material(MaterialType.Dirt, new Color(1, 1, 0), true, false);
     private static Material Empty = new Material(MaterialType.None, new Color(1, 1, 1), false, false);
@@ -49,6 +50,8 @@ public class PaintOutline : MonoBehaviour
         }
         foreach (var actor in _actors)
             actor.SetMaterial(Material.Type);
+        foreach (var mouth in _mouths)
+            mouth.EnterMaterial(Material.Type);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -73,6 +76,13 @@ public class PaintOutline : MonoBehaviour
             brush.Stuck(this);
             _fillColorSpriteRenderer.enabled = true;
         }
+
+        Mouth mouth = other.GetComponent<Mouth>();
+        if (mouth)
+        {
+            _mouths.Add(mouth);
+            mouth.EnterMaterial(Material.Type);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -91,6 +101,13 @@ public class PaintOutline : MonoBehaviour
             ApplyMaterial();
             brush.Free();
             _fillColorSpriteRenderer.enabled = false;
+        }
+
+        Mouth mouth = other.GetComponent<Mouth>();
+        if (mouth)
+        {
+            _mouths.Remove(mouth);
+            mouth.ExitMaterial(Material.Type);
         }
     }
 }
