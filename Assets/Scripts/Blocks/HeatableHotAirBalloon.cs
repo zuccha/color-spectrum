@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HotAirBalloon : Heatable
+public class HeatableHotAirBalloon : Heatable
 {
+    private Animator _animator;
     private Rigidbody2D _rigidbody;
     private float _initialPositionY;
 
     private void Start()
     {
         _initialPositionY = transform.position.y;
+        _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -22,5 +24,7 @@ public class HotAirBalloon : Heatable
           transform.position.x,
           Mathf.Max(transform.position.y, _initialPositionY),
           transform.position.z);
+
+        _animator.Play("HotAirBalloonHeat", -1, (float)_heat / MAX_HEAT);
     }
 }

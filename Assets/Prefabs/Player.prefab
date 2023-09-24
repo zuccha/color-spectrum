@@ -5099,9 +5099,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1122027021
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: b9c6dfb42f1d0f94dbf4ed7d211d9071, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5398,9 +5398,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 6338542060156076073}
   _anchor: {fileID: 5844567240281280568}
-  _maxBrushDistance: 4
+  _maxBrushDistance: 15
+  _maxBrushThrowDistance: 4
   _minBrushDistance: 1
   _brushTipSpriteRenderer: {fileID: 4023706895765105501}
+  _cameraShakeIntensity: 0.5
+  _cameraShakeDuration: 0.25
   _availableBrushColors: 01000000
 --- !u!61 &4984004642908668399
 BoxCollider2D:
@@ -5780,6 +5783,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8578074711302547273}
     m_Modifications:
+    - target: {fileID: 1891741845683556235, guid: 57162dd2e31fea94e8929513fe77e0e5, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1891741845683556235, guid: 57162dd2e31fea94e8929513fe77e0e5, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1122027021
+      objectReference: {fileID: 0}
     - target: {fileID: 2293757971073583522, guid: 57162dd2e31fea94e8929513fe77e0e5, type: 3}
       propertyPath: m_Name
       value: BrushVisuals
@@ -5792,6 +5803,14 @@ PrefabInstance:
       propertyPath: _brushRigidbody2D
       value: 
       objectReference: {fileID: 2365272527215711786}
+    - target: {fileID: 3969526398634724649, guid: 57162dd2e31fea94e8929513fe77e0e5, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3969526398634724649, guid: 57162dd2e31fea94e8929513fe77e0e5, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1122027021
+      objectReference: {fileID: 0}
     - target: {fileID: 7299770090068668927, guid: 57162dd2e31fea94e8929513fe77e0e5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.3039565

@@ -5,6 +5,9 @@ using UnityEngine;
 public class Heatable : MonoBehaviour
 {
     protected bool _isHeating = false;
+    protected int _heat = 0;
+
+    public static int MAX_HEAT = 1024;
 
     private bool _nextIsHeating;
     private float _cooldown = 0;
@@ -34,5 +37,10 @@ public class Heatable : MonoBehaviour
                 _isHeating = _nextIsHeating;
             }
         }
+
+
+        _heat = _isHeating
+            ? Mathf.Min(_heat + 1, MAX_HEAT)
+            : Mathf.Max(_heat - 1, 0);
     }
 }
